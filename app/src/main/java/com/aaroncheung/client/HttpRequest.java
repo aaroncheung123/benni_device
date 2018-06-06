@@ -1,5 +1,6 @@
 package com.aaroncheung.client;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,10 +21,13 @@ import org.json.JSONObject;
 public class HttpRequest {
 
     String TAG = "debug_123";
-
     String URL = "http://192.168.1.144:3000/api/todos/test";
     String POST_URL = "http://192.168.1.144:3000/api/todo";
     RequestQueue requestQueue;
+
+    public HttpRequest(Context context){
+        requestQueue = Volley.newRequestQueue(context);
+    }
 
 
     public void sendGetRequest(){
@@ -55,17 +59,8 @@ public class HttpRequest {
         requestQueue.add(objectRequest);
     }
 
-    public void sendPostRequest(){
+    public void sendPostRequest(JSONObject jsonBodyPost){
         Log.d(TAG, "postRequest");
-        JSONObject jsonBodyPost = new JSONObject();
-        try {
-            jsonBodyPost.put("todo", "cartwheels");
-            jsonBodyPost.put("isDone","false");
-            jsonBodyPost.put("hasAttachment","false");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
 
         JsonObjectRequest postReq = new JsonObjectRequest(Request.Method.POST,
                 POST_URL, jsonBodyPost,
