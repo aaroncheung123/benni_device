@@ -1,10 +1,7 @@
 package com.aaroncheung.client;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,10 +19,11 @@ public class HttpRequest {
 
     String TAG = "debug_123";
     String URL = "http://192.168.1.144:3000/api/todos/test";
-    String POST_URL = "http://192.168.1.144:3000/api/todo";
+    String SERVER_URL = "http://192.168.1.144:3000/api/authentication";
     RequestQueue requestQueue;
 
     public HttpRequest(Context context){
+        Log.d(TAG, "Connection");
         requestQueue = Volley.newRequestQueue(context);
     }
 
@@ -63,7 +61,7 @@ public class HttpRequest {
         Log.d(TAG, "postRequest");
 
         JsonObjectRequest postReq = new JsonObjectRequest(Request.Method.POST,
-                POST_URL, jsonBodyPost,
+                SERVER_URL, jsonBodyPost,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -77,6 +75,7 @@ public class HttpRequest {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG, error.toString());
+                        Log.d(TAG, "POST Error");
                         //Failure Callback
 
                     }

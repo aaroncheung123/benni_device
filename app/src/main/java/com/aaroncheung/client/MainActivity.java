@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         httpRequest = new HttpRequest(this);
     }
 
-    public void loginClick(View view){
+    public void registerClick(View view){
         username = usernameEditText.getText().toString();
         password = passwordEditText.getText().toString();
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         httpRequest.sendPostRequest(jsonBodyPost);
     }
 
-    public void registerClick(View view){
+    public void loginClick(View view){
 
     }
 
