@@ -2,6 +2,7 @@ package com.aaroncheung.client;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,12 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+import java.net.URISyntaxException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private String password;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate");
         httpRequest = new HttpRequest(this);
     }
+
+
+
 
     public void registerClick(View view){
         username = usernameEditText.getText().toString();
@@ -62,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginClick(View view){
-
+        //attemptSend();
     }
+
 
 }
