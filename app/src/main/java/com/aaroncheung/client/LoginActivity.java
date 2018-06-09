@@ -1,5 +1,6 @@
 package com.aaroncheung.client;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,7 +21,7 @@ import com.github.nkzawa.socketio.client.Socket;
 import java.net.URISyntaxException;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     String TAG = "debug_123";
     HttpRequest httpRequest;
@@ -54,23 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void registerClick(View view){
-        username = usernameEditText.getText().toString();
-        password = passwordEditText.getText().toString();
-
-        Log.d(TAG, username);
-        Log.d(TAG, password);
-
-        JSONObject jsonBodyPost = new JSONObject();
-        try {
-            jsonBodyPost.put("username", username);
-            jsonBodyPost.put("password", password);
-            jsonBodyPost.put("info","Hello World");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        httpRequest.sendPostRequest(jsonBodyPost);
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 
     public void loginClick(View view){

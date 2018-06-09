@@ -14,9 +14,6 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.URISyntaxException;
 
 public class SocketFragment extends Fragment {
@@ -34,13 +31,15 @@ public class SocketFragment extends Fragment {
     }
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.socket_fragment, container, false);
 
 
         socket.connect();
-        //socket.on("message", handleIncomingMessages());
+        socket.on("message", handleIncomingMessages);
 
         Button testClick = (Button) view.findViewById(R.id.testButton);
         testClick.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +49,18 @@ public class SocketFragment extends Fragment {
 
         return view;
     }
+
+    private Emitter.Listener handleIncomingMessages = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, args[0].toString());
+                }
+            });
+        }
+    };
 
 
     private void attemptSend() {
@@ -62,26 +73,7 @@ public class SocketFragment extends Fragment {
     }
 
 
-//    private Emitter.Listener handleIncomingMessages = new Emitter.Listener() {
-//        @Override
-//        public void call(final Object... args) {
-//            getActivity().runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    JSONObject data = (JSONObject) args[0];
-//                    String message;
-//                    try {
-//                        message = data.getString("message");
-//                    } catch (JSONException e) {
-//                        return;
-//                    }
-//                    Log.d(TAG, "handle messages");
-//                    // add the message to view
-//                    //addMessage(username, message);
-//                }
-//            });
-//        }
-//    };
+
 
     @Override
     public void onDestroy() {
