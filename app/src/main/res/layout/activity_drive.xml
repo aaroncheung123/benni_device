@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/driveTextView"
         android:layout_width="98dp"
-        android:layout_height="45"
+        android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Drive"
@@ -20,59 +20,61 @@
 
     <Button
         android:id="@+id/forwardButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="72dp"
         android:onClick="forwardButtonClick"
-        android:text="^"
+        android:text="Foreward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/driveTextView" />
 
     <Button
         android:id="@+id/rightButton"
-        android:layout_width="70"
-        android:layout_height="70"
-        android:layout_marginEnd="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="rightButtonClick"
-        android:text=">"
+        android:text="Right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintTop_toBottomOf="@+id/forwardButton"
+        app:layout_constraintVertical_bias="0.079" />
 
     <Button
         android:id="@+id/backwardButton"
-        android:layout_width="70"
-        android:layout_height="70"
-        android:layout_marginTop="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
         android:onClick="backwardButtonClick"
-        android:text="V"
+        android:text="Backward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stopButton" />
 
     <Button
         android:id="@+id/leftButton"
-        android:layout_width="70"
-        android:layout_height="70"
-        android:layout_marginStart="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="leftButtonClick"
-        android:text="<"
+        android:text="left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintTop_toBottomOf="@+id/forwardButton"
+        app:layout_constraintVertical_bias="0.079" />
 
     <Button
         android:id="@+id/stopButton"
-        android:layout_width="70"
-        android:layout_height="70"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:onClick="stopButtonClick"
-        android:text="x"
+        android:text="stop"
         app:layout_constraintEnd_toStartOf="@+id/rightButton"
         app:layout_constraintStart_toEndOf="@+id/leftButton"
         app:layout_constraintTop_toBottomOf="@+id/forwardButton" />

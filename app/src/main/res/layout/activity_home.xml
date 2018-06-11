@@ -10,39 +10,43 @@
         android:id="@+id/driveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="450dp"
         android:onClick="driveButtonClick"
         android:text="Drive"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="392dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/chatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="450dp"
         android:onClick="chatButtonClick"
         android:text="Chat"
         app:layout_constraintStart_toEndOf="@+id/driveButton"
-        tools:layout_editor_absoluteY="392dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/mathButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="450dp"
         android:onClick="mathButtonClick"
         android:text="Math"
         app:layout_constraintStart_toEndOf="@+id/chatButton"
-        tools:layout_editor_absoluteY="392dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/chargeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="450dp"
         android:onClick="chargeButtonClick"
         android:text="Charge"
         app:layout_constraintStart_toEndOf="@+id/mathButton"
-        tools:layout_editor_absoluteY="392dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
