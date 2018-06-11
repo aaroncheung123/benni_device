@@ -1,4 +1,4 @@
-package com.aaroncheung.client;
+package com.aaroncheung.client.Authentication;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.aaroncheung.client.HttpRequest;
+import com.aaroncheung.client.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,35 +76,35 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(firstName.matches("")){
             Toast.makeText(this, "Please enter first name",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(lastName.matches("")){
             Toast.makeText(this, "Please enter last name",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(phone.matches("")){
             Toast.makeText(this, "Please enter phone",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(address.matches("")){
             Toast.makeText(this, "Please enter address",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(email.matches("")){
             Toast.makeText(this, "Please enter email",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(password.matches("")){
             Toast.makeText(this, "Please enter password",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(confirmPassword.matches("")){
             Toast.makeText(this, "Please confirm password",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(password.matches(confirmPassword) == false){
             Toast.makeText(this, "Passwords do not match",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else{
             JSONObject jsonBodyPost = new JSONObject();
@@ -142,11 +145,11 @@ public class RegisterActivity extends AppCompatActivity {
     public void toastPostResponse(String response){
         if(response.matches("0")){
             Toast.makeText(this, "Error: Contact EI Robotics",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
         else if(response.matches("1")){
             Toast.makeText(this, "Successfully Created",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
         }
     }
 

@@ -22,6 +22,7 @@ public class HttpRequest {
     private String REGISTER_URL = "http://192.168.1.144:3000/api/authentication";
     private RequestQueue requestQueue;
     private String finalResponse = "0";
+    private JSONObject myJSONObject;
 
     public HttpRequest(Context context){
         Log.d(TAG, "Connection");
@@ -29,29 +30,61 @@ public class HttpRequest {
     }
 
 
-    public void sendLoginGetRequest(String email) {
+//    public void sendLoginGetRequest(String email) {
+//        String url = LOGIN_URL + email;
+//        Log.d(TAG, url);
+//        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        // display response
+//                        Log.d("Response", response.toString());
+//                        setResponse("1");
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d("Error.Response", error.toString());
+//                        setResponse("0");
+//                    }
+//                }
+//        );
+//
+//        requestQueue.add(getRequest);
+//
+//    }
+
+
+    public void sendLoginGetRequest(String email){
         String url = LOGIN_URL + email;
         Log.d(TAG, url);
-        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        JsonArrayRequest objectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        // display response
-                        Log.d("Response", response.toString());
-                        setResponse("1");
+                    public void onResponse(JSONArray response) {
+                        try {
+                            Log.d(TAG, "GET Success");
+                            JSONObject jsonObject = response.getJSONObject(0);
+                            Log.d(TAG, jsonObject.toString());
+                            myJSONObject = jsonObject;
+                            setResponse("1");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", error.toString());
+                        Log.d(TAG, error.toString());
                         setResponse("0");
                     }
                 }
         );
 
-        requestQueue.add(getRequest);
-
+        requestQueue.add(objectRequest);
     }
 
     public void sendPostRequest(JSONObject jsonBodyPost){
@@ -96,6 +129,10 @@ public class HttpRequest {
         else if(response.matches("1")){
             finalResponse = "1";
         }
+    }
+
+    public JSONObject getMyJSONObject() {
+        return myJSONObject;
     }
 
     public String getResponse(){

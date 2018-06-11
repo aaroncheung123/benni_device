@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Games.DriveActivity">
+
+    <TextView
+        android:id="@+id/driveTextView"
+        android:layout_width="98dp"
+        android:layout_height="45"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Drive"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/forwardButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="84dp"
+        android:onClick="forwardButtonClick"
+        android:text="^"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/driveTextView" />
+
+    <Button
+        android:id="@+id/rightButton"
+        android:layout_width="70"
+        android:layout_height="70"
+        android:layout_marginEnd="40dp"
+        android:onClick="rightButtonClick"
+        android:text=">"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <Button
+        android:id="@+id/backwardButton"
+        android:layout_width="70"
+        android:layout_height="70"
+        android:layout_marginTop="50dp"
+        android:onClick="backwardButtonClick"
+        android:text="V"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stopButton" />
+
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="70"
+        android:layout_height="70"
+        android:layout_marginStart="40dp"
+        android:onClick="leftButtonClick"
+        android:text="<"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="70"
+        android:layout_height="70"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:onClick="stopButtonClick"
+        android:text="x"
+        app:layout_constraintEnd_toStartOf="@+id/rightButton"
+        app:layout_constraintStart_toEndOf="@+id/leftButton"
+        app:layout_constraintTop_toBottomOf="@+id/forwardButton" />
+
+    <Button
+        android:id="@+id/driveToHomeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="144dp"
+        android:onClick="driveToHomeButtonClick"
+        android:text="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leftButton" />
+
+    <Button
+        android:id="@+id/voiceModeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="144dp"
+        android:onClick="voiceModeButtonClick"
+        android:text="voice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rightButton" />
+</android.support.constraint.ConstraintLayout>
