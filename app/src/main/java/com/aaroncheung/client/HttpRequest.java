@@ -17,10 +17,11 @@ import org.json.JSONObject;
 
 public class HttpRequest {
 
-    String TAG = "debug_123";
-    String URL = "http://192.168.1.144:3000/api/todos/test";
-    String SERVER_URL = "http://192.168.1.144:3000/api/authentication";
-    RequestQueue requestQueue;
+    private String TAG = "debug_123";
+    private String LOGIN_URL = "http://192.168.1.144:3000/api/authentication/";
+    private String REGISTER_URL = "http://192.168.1.144:3000/api/authentication";
+    private RequestQueue requestQueue;
+    private String finalResponse = "0";
 
     public HttpRequest(Context context){
         Log.d(TAG, "Connection");
@@ -28,45 +29,48 @@ public class HttpRequest {
     }
 
 
-    public void sendGetRequest(){
-
-        Log.d(TAG, "getRequest");
-        JsonArrayRequest objectRequest = new JsonArrayRequest(Request.Method.GET, URL, null,
-                new Response.Listener<JSONArray>() {
+    public void sendLoginGetRequest(String email) {
+        String url = LOGIN_URL + email;
+        Log.d(TAG, url);
+        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
-
-                        try {
-                            JSONObject jsonObject = response.getJSONObject(1);
-                            Log.d(TAG, jsonObject.toString());
-                            Log.d(TAG, "GET Success");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
+                    public void onResponse(JSONObject response) {
+                        // display response
+                        Log.d("Response", response.toString());
+                        setResponse("1");
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
+                        Log.d("Error.Response", error.toString());
+                        setResponse("0");
                     }
                 }
         );
 
-        requestQueue.add(objectRequest);
+        requestQueue.add(getRequest);
+
     }
 
     public void sendPostRequest(JSONObject jsonBodyPost){
         Log.d(TAG, "postRequest");
 
         JsonObjectRequest postReq = new JsonObjectRequest(Request.Method.POST,
-                SERVER_URL, jsonBodyPost,
+                REGISTER_URL, jsonBodyPost,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        Log.d(TAG, "POST Success");
+                            Log.d(TAG, response.toString());
+                            Log.d(TAG, "POST Success");
+                        try {
+                            Log.d(TAG, response.get("status").toString());
+                            setResponse(response.get("status").toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         //Success Callback
 
                     }
@@ -76,12 +80,26 @@ public class HttpRequest {
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG, error.toString());
                         Log.d(TAG, "POST Error");
+                        setResponse("0");
                         //Failure Callback
 
                     }
                 });
 
         requestQueue.add(postReq);
+    }
+
+    public void setResponse(String response){
+        if(response.matches("0")){
+            finalResponse = "0";
+        }
+        else if(response.matches("1")){
+            finalResponse = "1";
+        }
+    }
+
+    public String getResponse(){
+        return finalResponse;
     }
 
 

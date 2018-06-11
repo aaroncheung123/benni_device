@@ -1,12 +1,14 @@
 package com.aaroncheung.client;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,13 +18,24 @@ public class RegisterActivity extends AppCompatActivity {
     private String TAG = "debug_123";
     HttpRequest httpRequest;
 
-    private EditText usernameRegisterEditText;
+
+    private EditText firstNameRegisterEditText;
+    private EditText lastNameRegisterEditText;
+    private EditText phoneRegisterEditText;
+    private EditText addressRegisterEditText;
+
+    private EditText emailRegisterEditText;
     private EditText passwordRegisterEditText1;
     private EditText passwordRegisterEditText2;
     private Button createRegisterButton;
 
-    private String username;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private String address;
+    private String email;
     private String password;
+    private String confirmPassword;
 
 
     @Override
@@ -30,40 +43,111 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        usernameRegisterEditText = findViewById(R.id.usernameRegisterEditText);
+        firstNameRegisterEditText = findViewById(R.id.firstNameRegisterEditText);
+        lastNameRegisterEditText = findViewById(R.id.lastNameRegisterEditText);
+        phoneRegisterEditText = findViewById(R.id.phoneRegisterEditText);
+        addressRegisterEditText = findViewById(R.id.addressRegisterEditText);
+
+        emailRegisterEditText = findViewById(R.id.emailRegisterEditText);
         passwordRegisterEditText1 = findViewById(R.id.passwordRegisterEditText1);
         passwordRegisterEditText2 = findViewById(R.id.passwordRegisterEditText2);
         createRegisterButton = findViewById(R.id.createRegisterButton);
 
         httpRequest = new HttpRequest(this);
+        Log.d(TAG, "Register onCreate");
     }
 
 
     public void createRegisterClick(View view){
-        username = usernameRegisterEditText.getText().toString();
+        String response;
+        firstName = firstNameRegisterEditText.getText().toString();
+        lastName = lastNameRegisterEditText.getText().toString();
+        phone = phoneRegisterEditText.getText().toString();
+        address = addressRegisterEditText.getText().toString();
+        email = emailRegisterEditText.getText().toString();
         password = passwordRegisterEditText1.getText().toString();
+        confirmPassword = passwordRegisterEditText2.getText().toString();
 
-        Log.d(TAG, username);
+        Log.d(TAG, email);
         Log.d(TAG, password);
 
-        JSONObject jsonBodyPost = new JSONObject();
-        try {
-            jsonBodyPost.put("username", username);
-            jsonBodyPost.put("password", password);
-            //jsonBodyPost.put("info","Hello World");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(firstName.matches("")){
+            Toast.makeText(this, "Please enter first name",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(lastName.matches("")){
+            Toast.makeText(this, "Please enter last name",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(phone.matches("")){
+            Toast.makeText(this, "Please enter phone",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(address.matches("")){
+            Toast.makeText(this, "Please enter address",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(email.matches("")){
+            Toast.makeText(this, "Please enter email",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(password.matches("")){
+            Toast.makeText(this, "Please enter password",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(confirmPassword.matches("")){
+            Toast.makeText(this, "Please confirm password",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(password.matches(confirmPassword) == false){
+            Toast.makeText(this, "Passwords do not match",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else{
+            JSONObject jsonBodyPost = new JSONObject();
+            try {
+                jsonBodyPost.put("firstName", firstName);
+                jsonBodyPost.put("lastName", lastName);
+                jsonBodyPost.put("phone", phone);
+                jsonBodyPost.put("address", address);
+                jsonBodyPost.put("email", email);
+                jsonBodyPost.put("password", password);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            httpRequest.sendPostRequest(jsonBodyPost);
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(httpRequest.getResponse().matches("1")){
+                        Log.d(TAG, "Success sendPostRequest");
+                        toastPostResponse("1");
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    }
+                    else if(httpRequest.getResponse().matches("0")){
+                        toastPostResponse("0");
+                        Log.d(TAG, "Fail sendPostRequest");
+                    }
+                }
+            }, 1000);
+
+
         }
 
+    }
 
-        httpRequest.sendPostRequest(jsonBodyPost);
-
-//        if(httpRequest.sendPostRequest(jsonBodyPost) == "USER EXISTS"){
-//            //TOAST USERNAME ALREADY EXISTS
-//        }
-//        else if(httpRequest.sendPostRequest(jsonBodyPost) == "Error"){
-//            //TOAST THERE WAS AN ERROR
-//        }
+    public void toastPostResponse(String response){
+        if(response.matches("0")){
+            Toast.makeText(this, "Error: Contact EI Robotics",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(response.matches("1")){
+            Toast.makeText(this, "Successfully Created",
+                        Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void backLoginClick(View view){
