@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.aaroncheung.client.HttpRequest;
+import com.aaroncheung.client.Networking.HttpRequest;
+import com.aaroncheung.client.Networking.UserInformationSingleton;
 import com.aaroncheung.client.R;
 
 import org.json.JSONException;
@@ -107,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
         else{
+            
             JSONObject jsonBodyPost = new JSONObject();
             try {
                 jsonBodyPost.put("firstName", firstName);

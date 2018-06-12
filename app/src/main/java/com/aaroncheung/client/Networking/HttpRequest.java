@@ -1,4 +1,4 @@
-package com.aaroncheung.client;
+package com.aaroncheung.client.Networking;
 
 import android.content.Context;
 import android.util.Log;

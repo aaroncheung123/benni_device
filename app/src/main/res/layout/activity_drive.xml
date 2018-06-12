@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Games.DriveActivity">
+    tools:context=".Games.Drive.ManualDriveActivity">
 
     <TextView
         android:id="@+id/driveTextView"
-        android:layout_width="98dp"
+        android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Drive"
+        android:text="Manual Drive"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="72dp"
         android:onClick="forwardButtonClick"
-        android:text="Foreward"
+        android:text="Forward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/driveTextView" />
@@ -86,17 +86,17 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="144dp"
         android:onClick="driveToHomeButtonClick"
-        android:text="back"
+        android:text="home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leftButton" />
 
     <Button
-        android:id="@+id/voiceModeButton"
+        android:id="@+id/voiceDriveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginTop="144dp"
-        android:onClick="voiceModeButtonClick"
+        android:onClick="voiceDriveButtonClick"
         android:text="voice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rightButton" />

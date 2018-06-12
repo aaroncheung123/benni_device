@@ -20,10 +20,11 @@
         </activity>
         <activity android:name=".Authentication.RegisterActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".Games.DriveActivity" />
+        <activity android:name=".Games.Drive.ManualDriveActivity" />
         <activity android:name=".Games.ChatActivity" />
         <activity android:name=".Games.MathActivity" />
-        <activity android:name=".Games.ChargeActivity"></activity>
+        <activity android:name=".Games.ChargeActivity" />
+        <activity android:name=".Games.Drive.VoiceDriveActivity"></activity>
     </application>
 
 </manifest>

@@ -8,10 +8,10 @@
 
     <Button
         android:id="@+id/driveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="272dp"
         android:onClick="driveButtonClick"
         android:text="Drive"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,34 +19,100 @@
 
     <Button
         android:id="@+id/chatButton"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
         android:onClick="chatButtonClick"
         android:text="Chat"
-        app:layout_constraintStart_toEndOf="@+id/driveButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/driveButton" />
 
     <Button
         android:id="@+id/mathButton"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
         android:onClick="mathButtonClick"
         android:text="Math"
-        app:layout_constraintStart_toEndOf="@+id/chatButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/chatButton" />
 
     <Button
         android:id="@+id/chargeButton"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
         android:onClick="chargeButtonClick"
         android:text="Charge"
-        app:layout_constraintStart_toEndOf="@+id/mathButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mathButton" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="500dp"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nelli_home" />
+
+    <ProgressBar
+        android:id="@+id/chargeProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="186dp"
+        android:layout_height="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="45dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mathProgressBar" />
+
+    <ProgressBar
+        android:id="@+id/mathProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="186dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="45dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatProgressBar" />
+
+    <ProgressBar
+        android:id="@+id/chatProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="186dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="45dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveProgressBar" />
+
+    <ProgressBar
+        android:id="@+id/driveProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="186dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="292dp"
+        android:progress="100"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/happinessIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="52dp"
+        android:text="100"
+        android:textSize="46sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

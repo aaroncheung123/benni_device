@@ -1,4 +1,4 @@
-package com.aaroncheung.client.Games;
+package com.aaroncheung.client.Games.Drive;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,21 +7,18 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
-import com.aaroncheung.client.Authentication.LoginActivity;
-import com.aaroncheung.client.Authentication.RegisterActivity;
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.R;
-import com.aaroncheung.client.UserInformationSingleton;
+import com.aaroncheung.client.Networking.UserInformationSingleton;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
-public class DriveActivity extends AppCompatActivity {
+public class ManualDriveActivity extends AppCompatActivity {
 
     String TAG = "debug_123";
     private String socket_url = "http://192.168.1.144:3000";
@@ -41,22 +38,22 @@ public class DriveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drive);
 
         email = UserInformationSingleton.getInstance().getEmail();
-
         socket.connect();
-        socket.on(email, handleIncomingMessages);
+        //socket.on(email, handleIncomingMessages);
+
     }
 
-    private Emitter.Listener handleIncomingMessages = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            DriveActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d(TAG, args[0].toString());
-                }
-            });
-        }
-    };
+//    private Emitter.Listener handleIncomingMessages = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            ManualDriveActivity.this.runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Log.d(TAG, args[0].toString());
+//                }
+//            });
+//        }
+//    };
 
     private void attemptSend(String message) throws JSONException {
         if (TextUtils.isEmpty(message)) {
@@ -75,25 +72,25 @@ public class DriveActivity extends AppCompatActivity {
     }
 
     public void forwardButtonClick(View view) throws JSONException {
-        attemptSend("w");
+        attemptSend("forward");
     }
     public void backwardButtonClick(View view) throws JSONException {
-        attemptSend("s");
+        attemptSend("backward");
     }
     public void leftButtonClick(View view) throws JSONException {
-        attemptSend("a");
+        attemptSend("left");
     }
     public void rightButtonClick(View view) throws JSONException {
-        attemptSend("d");
+        attemptSend("right");
     }
     public void stopButtonClick(View view) throws JSONException {
-        attemptSend("z");
+        attemptSend("stop");
     }
     public void driveToHomeButtonClick(View view){
-        startActivity(new Intent(DriveActivity.this, HomeActivity.class));
+        startActivity(new Intent(ManualDriveActivity.this, HomeActivity.class));
     }
-    public void voiceModeButtonClick(View view){
-
+    public void voiceDriveButtonClick(View view){
+        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
     }
 
 }

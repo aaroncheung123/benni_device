@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aaroncheung.client.HomeActivity;
-import com.aaroncheung.client.HttpRequest;
+import com.aaroncheung.client.Networking.HttpRequest;
 import com.aaroncheung.client.R;
-import com.aaroncheung.client.UserInformationSingleton;
+import com.aaroncheung.client.Networking.UserInformationSingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
