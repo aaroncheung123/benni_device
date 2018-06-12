@@ -54,21 +54,6 @@
         app:layout_constraintTop_toTopOf="@+id/loginButton"
         app:layout_constraintVertical_bias="0.122" />
 
-    <fragment
-        android:id="@+id/fragment3"
-        android:name="com.aaroncheung.client.SocketFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="119dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782"
-        tools:layout="@layout/socket_fragment" />
-
     <TextView
         android:id="@+id/loginTextView"
         android:layout_width="136dp"

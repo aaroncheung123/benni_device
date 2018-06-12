@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.HttpRequest;
 import com.aaroncheung.client.R;
+import com.aaroncheung.client.UserInformationSingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,6 +69,11 @@ public class LoginActivity extends AppCompatActivity {
             if(password.matches(databasePassword)){
                 Toast.makeText(this, "Login Successful",
                         Toast.LENGTH_LONG).show();
+
+                //Init user info singleton and adding email
+                UserInformationSingleton userInfo = UserInformationSingleton.getInstance();
+                userInfo.setEmail(jsonObject.get("email").toString());
+
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             }
             else{

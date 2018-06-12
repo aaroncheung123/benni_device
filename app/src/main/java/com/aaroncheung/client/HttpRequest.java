@@ -29,33 +29,6 @@ public class HttpRequest {
         requestQueue = Volley.newRequestQueue(context);
     }
 
-
-//    public void sendLoginGetRequest(String email) {
-//        String url = LOGIN_URL + email;
-//        Log.d(TAG, url);
-//        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        // display response
-//                        Log.d("Response", response.toString());
-//                        setResponse("1");
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.d("Error.Response", error.toString());
-//                        setResponse("0");
-//                    }
-//                }
-//        );
-//
-//        requestQueue.add(getRequest);
-//
-//    }
-
-
     public void sendLoginGetRequest(String email){
         String url = LOGIN_URL + email;
         Log.d(TAG, url);

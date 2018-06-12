@@ -2,6 +2,8 @@ package com.aaroncheung.client;
 
 public class UserInformationSingleton {
 
+    private String email;
+
     private static UserInformationSingleton instance = null;
     private UserInformationSingleton() {
         // Exists only to defeat instantiation.
@@ -13,6 +15,15 @@ public class UserInformationSingleton {
         }
         return instance;
     }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public String getEmail(){
+        return email;
+    }
+
+
 
 
 }
