@@ -108,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
         else{
-            
+
             JSONObject jsonBodyPost = new JSONObject();
             try {
                 jsonBodyPost.put("firstName", firstName);

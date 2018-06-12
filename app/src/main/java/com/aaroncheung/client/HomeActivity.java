@@ -58,11 +58,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
-                driveProgressNumber = userInformationSingleton.getDriveProgressNumber() - decrementNumber;
-                chatProgressNumber = userInformationSingleton.getChatProgressNumber() - decrementNumber;
-                mathProgressNumber = userInformationSingleton.getMathProgressNumber() - decrementNumber;
-                chargeProgressNumber = userInformationSingleton.getChargeProgressNumber() - decrementNumber;
-
+                if(happinessIndexNumber > 0){
+                    driveProgressNumber = userInformationSingleton.getDriveProgressNumber() - decrementNumber;
+                    chatProgressNumber = userInformationSingleton.getChatProgressNumber() - decrementNumber;
+                    mathProgressNumber = userInformationSingleton.getMathProgressNumber() - decrementNumber;
+                    chargeProgressNumber = userInformationSingleton.getChargeProgressNumber() - decrementNumber;
+                }
                 //SETTING PROGRESS NUMBERS IN SINGLETON
                 userInformationSingleton.setDriveProgressNumber(driveProgressNumber);
                 userInformationSingleton.setChatProgressNumber(chatProgressNumber);
