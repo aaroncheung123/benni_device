@@ -46,12 +46,11 @@
         android:id="@+id/backwardButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="25dp"
         android:onClick="backwardButtonClick"
         android:text="Backward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopButton" />
+        tools:layout_editor_absoluteY="338dp" />
 
     <Button
         android:id="@+id/leftButton"
@@ -65,19 +64,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forwardButton"
         app:layout_constraintVertical_bias="0.079" />
-
-    <Button
-        android:id="@+id/stopButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:onClick="stopButtonClick"
-        android:text="stop"
-        app:layout_constraintEnd_toStartOf="@+id/rightButton"
-        app:layout_constraintStart_toEndOf="@+id/leftButton"
-        app:layout_constraintTop_toBottomOf="@+id/forwardButton" />
 
     <Button
         android:id="@+id/driveToHomeButton"
