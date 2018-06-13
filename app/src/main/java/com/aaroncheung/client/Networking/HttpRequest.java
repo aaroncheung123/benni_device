@@ -20,20 +20,23 @@ public class HttpRequest {
     private String TAG = "debug_123";
     //private String LOGIN_URL = "http://192.168.1.144:3000/api/authentication/";
     //private String REGISTER_URL = "http://192.168.1.144:3000/api/authentication";
-    private String LOGIN_URL = "http://10.37.60.76:3000/api/authentication/";
-    private String REGISTER_URL = "http://10.37.60.76:3000/api/authentication";
+    //private String LOGIN_URL = "http://10.37.60.76:3000/api/authentication/";
+    //private String REGISTER_URL = "http://10.37.60.76:3000/api/authentication";
 
     private RequestQueue requestQueue;
     private String finalResponse = "0";
     private JSONObject myJSONObject;
+    private String SERVER_URL;
 
     public HttpRequest(Context context){
         Log.d(TAG, "Connection");
+        SERVER_URL = UserInformationSingleton.getInstance().getSERVER_URL();
         requestQueue = Volley.newRequestQueue(context);
     }
 
     public void sendLoginGetRequest(String email){
-        String url = LOGIN_URL + email;
+        //String url = LOGIN_URL + email;
+        String url = SERVER_URL + "api/authentication/" + email;
         Log.d(TAG, url);
         JsonArrayRequest objectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -65,9 +68,9 @@ public class HttpRequest {
 
     public void sendPostRequest(JSONObject jsonBodyPost){
         Log.d(TAG, "postRequest");
-
+        String url = SERVER_URL + "api/authentication";
         JsonObjectRequest postReq = new JsonObjectRequest(Request.Method.POST,
-                REGISTER_URL, jsonBodyPost,
+                url, jsonBodyPost,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

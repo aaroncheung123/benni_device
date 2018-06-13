@@ -7,6 +7,7 @@ public class UserInformationSingleton {
     private Integer chatProgressNumber = 100;
     private Integer mathProgressNumber = 100;
     private Integer chargeProgressNumber = 100;
+    private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
 
     private static UserInformationSingleton instance = null;
     private UserInformationSingleton() {
@@ -58,6 +59,9 @@ public class UserInformationSingleton {
         return chargeProgressNumber;
     }
 
+    public String getSERVER_URL(){
+        return SERVER_URL;
+    }
 
 
 }
