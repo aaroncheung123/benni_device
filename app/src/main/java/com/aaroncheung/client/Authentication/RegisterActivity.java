@@ -107,20 +107,31 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
         else{
-
-            JSONObject jsonBodyPost = new JSONObject();
+            JSONObject jsonFinal = new JSONObject();
+            JSONObject jsonInfoBody = new JSONObject();
+            JSONObject jsonProgressNumbersBody = new JSONObject();
             try {
-                jsonBodyPost.put("firstName", firstName);
-                jsonBodyPost.put("lastName", lastName);
-                jsonBodyPost.put("phone", phone);
-                jsonBodyPost.put("address", address);
-                jsonBodyPost.put("email", email);
-                jsonBodyPost.put("password", password);
+                jsonInfoBody.put("firstName", firstName);
+                jsonInfoBody.put("lastName", lastName);
+                jsonInfoBody.put("phone", phone);
+                jsonInfoBody.put("address", address);
+                jsonInfoBody.put("email", email);
+                jsonInfoBody.put("password", password);
+
+                jsonProgressNumbersBody.put("drive", 60);
+                jsonProgressNumbersBody.put("chat", 80);
+                jsonProgressNumbersBody.put("math", 70);
+                jsonProgressNumbersBody.put("charge", 90);
+
+                jsonFinal.put("info", jsonInfoBody);
+                jsonFinal.put("progressNumbers", jsonProgressNumbersBody);
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            httpRequest.sendPostRequest(jsonBodyPost);
+            httpRequest.sendPostRequest(jsonFinal);
 
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -136,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.d(TAG, "Fail sendPostRequest");
                     }
                 }
-            }, 1000);
+            }, 2000);
 
 
         }

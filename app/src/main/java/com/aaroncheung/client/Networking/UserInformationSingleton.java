@@ -3,10 +3,10 @@ package com.aaroncheung.client.Networking;
 public class UserInformationSingleton {
 
     private String email;
-    private Integer driveProgressNumber = 100;
-    private Integer chatProgressNumber = 100;
-    private Integer mathProgressNumber = 100;
-    private Integer chargeProgressNumber = 100;
+    private Integer driveProgressNumber;
+    private Integer chatProgressNumber;
+    private Integer mathProgressNumber;
+    private Integer chargeProgressNumber;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
 
     private static UserInformationSingleton instance = null;

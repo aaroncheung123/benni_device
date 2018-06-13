@@ -37,14 +37,20 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        userInformationSingleton = UserInformationSingleton.getInstance();
 
+        //SETTING PROGRESS BARS
         driveProgressBar = findViewById(R.id.driveProgressBar);
         chatProgressBar = findViewById(R.id.chatProgressBar);
         mathProgressBar = findViewById(R.id.mathProgressBar);
         chargeProgressBar = findViewById(R.id.chargeProgressBar);
         happinessIndexTextView = findViewById(R.id.happinessIndex);
 
-        userInformationSingleton = UserInformationSingleton.getInstance();
+        //GETTING PROGRESS NUMBERS
+        driveProgressNumber = userInformationSingleton.getDriveProgressNumber();
+        chatProgressNumber = userInformationSingleton.getChatProgressNumber();
+        mathProgressNumber = userInformationSingleton.getMathProgressNumber();
+        chargeProgressNumber = userInformationSingleton.getChargeProgressNumber();
 
         Log.i(TAG, "Home onCreate");
 
@@ -53,13 +59,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
-                if(happinessIndexNumber > 0){
-                    driveProgressNumber = userInformationSingleton.getDriveProgressNumber() - decrementNumber;
-                    chatProgressNumber = userInformationSingleton.getChatProgressNumber() - decrementNumber;
-                    mathProgressNumber = userInformationSingleton.getMathProgressNumber() - decrementNumber;
-                    chargeProgressNumber = userInformationSingleton.getChargeProgressNumber() - decrementNumber;
-                }
                 //SETTING PROGRESS NUMBERS IN SINGLETON
                 userInformationSingleton.setDriveProgressNumber(driveProgressNumber);
                 userInformationSingleton.setChatProgressNumber(chatProgressNumber);
@@ -74,7 +73,15 @@ public class HomeActivity extends AppCompatActivity {
 
                 //HAPPINESS INDEX CALCULATIONS
                 happinessIndexNumber = (driveProgressNumber + chargeProgressNumber + mathProgressNumber + chargeProgressNumber)/4;
-                happinessIndexTextView.setText(happinessIndexNumber.toString());
+                happinessIndexTextView.setText(happinessIndexNumber.toString() + "%");
+
+                //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
+                if(happinessIndexNumber > 0){
+                    driveProgressNumber = userInformationSingleton.getDriveProgressNumber() - decrementNumber;
+                    chatProgressNumber = userInformationSingleton.getChatProgressNumber() - decrementNumber;
+                    mathProgressNumber = userInformationSingleton.getMathProgressNumber() - decrementNumber;
+                    chargeProgressNumber = userInformationSingleton.getChargeProgressNumber() - decrementNumber;
+                }
 
                 handler.postDelayed(this, 10000);
             }
