@@ -46,11 +46,6 @@ public class HomeActivity extends AppCompatActivity {
         chargeProgressBar = findViewById(R.id.chargeProgressBar);
         happinessIndexTextView = findViewById(R.id.happinessIndex);
 
-        //GETTING PROGRESS NUMBERS
-        driveProgressNumber = userInformationSingleton.getDriveProgressNumber();
-        chatProgressNumber = userInformationSingleton.getChatProgressNumber();
-        mathProgressNumber = userInformationSingleton.getMathProgressNumber();
-        chargeProgressNumber = userInformationSingleton.getChargeProgressNumber();
 
         Log.i(TAG, "Home onCreate");
 
@@ -59,11 +54,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                //SETTING PROGRESS NUMBERS IN SINGLETON
-                userInformationSingleton.setDriveProgressNumber(driveProgressNumber);
-                userInformationSingleton.setChatProgressNumber(chatProgressNumber);
-                userInformationSingleton.setMathProgressNumber(mathProgressNumber);
-                userInformationSingleton.setChargeProgressNumber(chargeProgressNumber);
+
+
+                //GETTING PROGRESS NUMBERS
+                driveProgressNumber = userInformationSingleton.getDriveProgressNumber();
+                chatProgressNumber = userInformationSingleton.getChatProgressNumber();
+                mathProgressNumber = userInformationSingleton.getMathProgressNumber();
+                chargeProgressNumber = userInformationSingleton.getChargeProgressNumber();
+
+                Log.d(TAG, driveProgressNumber.toString());
+
 
                 //SETTING PROGRESS BARS
                 driveProgressBar.setProgress(driveProgressNumber);

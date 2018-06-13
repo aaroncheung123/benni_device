@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.SocketIO;
@@ -21,6 +23,10 @@ public class ManualDriveActivity extends SocketIO {
     private Button backwardButton;
     private Button leftButton;
     private Button rightButton;
+
+    private ProgressBar manualDriveProgressBar;
+    private TextView manualDriveTextView;
+
     private Integer totalPoints;
     private UserInformationSingleton userInformationSingleton;
 
@@ -37,6 +43,9 @@ public class ManualDriveActivity extends SocketIO {
         backwardButton = findViewById(R.id.backwardButton);
         leftButton = findViewById(R.id.leftButton);
         rightButton = findViewById(R.id.rightButton);
+
+        manualDriveProgressBar = findViewById(R.id.manualDriveProgressBar);
+        manualDriveTextView = findViewById(R.id.manualDriveTextView);
 
         //*****************************
         // Move Forward
@@ -148,10 +157,14 @@ public class ManualDriveActivity extends SocketIO {
     }
 
     public void calculateTotalPoints(){
+        Integer driveNumber = userInformationSingleton.getDriveProgressNumber();
         Log.d(TAG, userInformationSingleton.getDriveProgressNumber().toString());
         totalPoints += 1;
-        if(totalPoints == 1){
-            userInformationSingleton.setDriveProgressNumber(userInformationSingleton.getDriveProgressNumber() + 1);
+        if(totalPoints == 3){
+            driveNumber += 1;
+            userInformationSingleton.setDriveProgressNumber(driveNumber);
+            manualDriveProgressBar.setProgress(driveNumber);
+            manualDriveTextView.setText(driveNumber.toString() + '%');
             totalPoints = 0;
         }
     }

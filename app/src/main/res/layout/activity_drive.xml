@@ -11,10 +11,12 @@
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Manual Drive"
-        android:textSize="35sp"
+        android:textAlignment="center"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,31 +24,29 @@
         android:id="@+id/forwardButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="176dp"
         android:onClick="forwardButtonClick"
         android:text="Forward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/driveTextView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/rightButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="100dp"
         android:onClick="rightButtonClick"
         android:text="Right"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forwardButton"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toTopOf="@+id/forwardButton" />
 
     <Button
         android:id="@+id/backwardButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="100dp"
         android:onClick="backwardButtonClick"
         android:text="Backward"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,34 +57,55 @@
         android:id="@+id/leftButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
         android:onClick="leftButtonClick"
         android:text="left"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forwardButton"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toTopOf="@+id/forwardButton" />
 
     <Button
         android:id="@+id/driveToHomeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginStart="16dp"
         android:onClick="driveToHomeButtonClick"
         android:text="home"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leftButton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/voiceDriveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="16dp"
         android:onClick="voiceDriveButtonClick"
         android:text="voice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/manualDriveProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="68dp"
+        android:progress="100"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rightButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveTextView" />
+
+    <TextView
+        android:id="@+id/manualDriveTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="100%"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveTextView" />
 </android.support.constraint.ConstraintLayout>
