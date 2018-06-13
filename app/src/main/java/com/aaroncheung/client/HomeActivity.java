@@ -1,7 +1,6 @@
 package com.aaroncheung.client;
 
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +13,8 @@ import com.aaroncheung.client.Games.ChargeActivity;
 import com.aaroncheung.client.Games.ChatActivity;
 import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
 import com.aaroncheung.client.Games.MathActivity;
-import com.aaroncheung.client.Networking.HttpRequest;
 import com.aaroncheung.client.Networking.UserInformationSingleton;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -28,14 +23,14 @@ public class HomeActivity extends AppCompatActivity {
     private ProgressBar chatProgressBar;
     private ProgressBar mathProgressBar;
     private ProgressBar chargeProgressBar;
-    private Integer driveProgressNumber = 100;
-    private Integer chatProgressNumber = 100;
-    private Integer mathProgressNumber = 100;
-    private Integer chargeProgressNumber = 100;
-    final private Integer decrementNumber = 1;
+    private Integer driveProgressNumber;
+    private Integer chatProgressNumber;
+    private Integer mathProgressNumber;
+    private Integer chargeProgressNumber;
     private TextView happinessIndexTextView;
-    private Integer happinessIndexNumber = 100;
+    private Integer happinessIndexNumber;
     UserInformationSingleton userInformationSingleton;
+    final private Integer decrementNumber = 1;
 
 
     @Override
@@ -43,11 +38,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        driveProgressBar = (ProgressBar)findViewById(R.id.driveProgressBar);
-        chatProgressBar = (ProgressBar)findViewById(R.id.chatProgressBar);
-        mathProgressBar = (ProgressBar)findViewById(R.id.mathProgressBar);
-        chargeProgressBar = (ProgressBar)findViewById(R.id.chargeProgressBar);
-        happinessIndexTextView = (TextView)findViewById(R.id.happinessIndex);
+        driveProgressBar = findViewById(R.id.driveProgressBar);
+        chatProgressBar = findViewById(R.id.chatProgressBar);
+        mathProgressBar = findViewById(R.id.mathProgressBar);
+        chargeProgressBar = findViewById(R.id.chargeProgressBar);
+        happinessIndexTextView = findViewById(R.id.happinessIndex);
 
         userInformationSingleton = UserInformationSingleton.getInstance();
 
@@ -57,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         Runnable run = new Runnable() {
             @Override
             public void run() {
+
                 //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
                 if(happinessIndexNumber > 0){
                     driveProgressNumber = userInformationSingleton.getDriveProgressNumber() - decrementNumber;

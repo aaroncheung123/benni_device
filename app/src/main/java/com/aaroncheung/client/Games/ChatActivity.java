@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ToggleButton;
 
+import com.aaroncheung.client.Networking.SocketIO;
 import com.aaroncheung.client.Networking.UserInformationSingleton;
 import com.aaroncheung.client.R;
 import com.github.nkzawa.socketio.client.IO;
@@ -16,39 +17,18 @@ import org.json.JSONException;
 
 import java.net.URISyntaxException;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends SocketIO {
 
-    ToggleButton toggleButton;
     String TAG = "debug_123";
+    ToggleButton toggleButton;
 
-    private String socket_url = "http://192.168.1.144:3000";
-    private String email;
 
-    private Socket socket;
-    {
-        Log.d(TAG, "Connecting to socket");
-        try {
-            socket = IO.socket(socket_url);
-        } catch (URISyntaxException e) {}
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
         toggleButton = (ToggleButton) findViewById(R.id.chatToggleButton);
-        email = UserInformationSingleton.getInstance().getEmail();
-        socket.connect();
-    }
-
-    private void attemptSend(String message) throws JSONException {
-        if (TextUtils.isEmpty(message)) {
-            return;
-        }
-        Log.d(TAG, "attempt send");
-
-        String finalMessage = email + ":" + message;
-        socket.emit("message", finalMessage);
     }
 
     public void chatToggleButtonClick(View view) throws JSONException {

@@ -18,10 +18,6 @@ import org.json.JSONObject;
 public class HttpRequest {
 
     private String TAG = "debug_123";
-    //private String LOGIN_URL = "http://192.168.1.144:3000/api/authentication/";
-    //private String REGISTER_URL = "http://192.168.1.144:3000/api/authentication";
-    //private String LOGIN_URL = "http://10.37.60.76:3000/api/authentication/";
-    //private String REGISTER_URL = "http://10.37.60.76:3000/api/authentication";
 
     private RequestQueue requestQueue;
     private String finalResponse = "0";
@@ -35,7 +31,6 @@ public class HttpRequest {
     }
 
     public void sendLoginGetRequest(String email){
-        //String url = LOGIN_URL + email;
         String url = SERVER_URL + "api/authentication/" + email;
         Log.d(TAG, url);
         JsonArrayRequest objectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -82,9 +77,7 @@ public class HttpRequest {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         //Success Callback
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -94,10 +87,8 @@ public class HttpRequest {
                         Log.d(TAG, "POST Error");
                         setResponse("0");
                         //Failure Callback
-
                     }
                 });
-
         requestQueue.add(postReq);
     }
 
