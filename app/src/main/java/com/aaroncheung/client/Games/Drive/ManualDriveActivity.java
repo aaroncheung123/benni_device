@@ -47,6 +47,9 @@ public class ManualDriveActivity extends SocketIO {
         manualDriveProgressBar = findViewById(R.id.manualDriveProgressBar);
         manualDriveTextView = findViewById(R.id.manualDriveTextView);
 
+        manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
+        manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
+
         //*****************************
         // Move Forward
         //*****************************

@@ -29,7 +29,7 @@ public class UserInformationSingleton {
     }
 
     public void setDriveProgressNumber(int number){
-        if(number <= 100){
+        if(number < 100){
             driveProgressNumber = number;
         }
     }
@@ -39,7 +39,7 @@ public class UserInformationSingleton {
 
 
     public void setChatProgressNumber(int number){
-        if(number <= 100) {
+        if(number < 100) {
             chatProgressNumber = number;
         }
     }
@@ -49,7 +49,7 @@ public class UserInformationSingleton {
 
 
     public void setMathProgressNumber(int number){
-        if(number <= 100) {
+        if(number < 100) {
             mathProgressNumber = number;
         }
     }
@@ -59,7 +59,7 @@ public class UserInformationSingleton {
 
 
     public void setChargeProgressNumber(int number){
-        if(number <= 100) {
+        if(number < 100) {
             chargeProgressNumber = number;
         }
     }
