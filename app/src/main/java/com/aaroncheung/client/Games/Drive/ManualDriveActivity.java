@@ -23,8 +23,8 @@ import java.net.URISyntaxException;
 public class ManualDriveActivity extends AppCompatActivity {
 
     String TAG = "debug_123";
-    //private String socket_url = "http://192.168.1.144:3000";
-    private String socket_url = "http://10.37.60.76:3000";
+
+    private String url = UserInformationSingleton.getInstance().getSERVER_URL();
     private String email;
 
     Button forwardButton;
@@ -36,7 +36,7 @@ public class ManualDriveActivity extends AppCompatActivity {
     {
         Log.d(TAG, "Connecting to socket");
         try {
-            socket = IO.socket(socket_url);
+            socket = IO.socket(url);
         } catch (URISyntaxException e) {}
     }
 
@@ -47,7 +47,7 @@ public class ManualDriveActivity extends AppCompatActivity {
 
         email = UserInformationSingleton.getInstance().getEmail();
         socket.connect();
-        //socket.on(email, handleIncomingMessages);
+
 
         forwardButton = findViewById(R.id.forwardButton);
         backwardButton = findViewById(R.id.backwardButton);
@@ -164,8 +164,6 @@ public class ManualDriveActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(message)) {
             return;
         }
-
-
         String finalMessage = email + ":" + message;
         Log.d(TAG, finalMessage);
         socket.emit("message", finalMessage);
