@@ -35,7 +35,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="60dp"
         android:onClick="mathButtonClick"
-        android:text="Math"
+        android:text="Game"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chatButton" />
 
@@ -52,7 +52,7 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="500dp"
+        android:layout_width="502dp"
         android:layout_height="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
