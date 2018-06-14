@@ -49,6 +49,24 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.i(TAG, "Home onCreate");
 
+        initializeHomeTimer();
+    }
+
+    public void driveButtonClick(View view){
+        startActivity(new Intent(HomeActivity.this, ManualDriveActivity.class));
+    }
+    public void chatButtonClick(View view){
+        startActivity(new Intent(HomeActivity.this, ChatActivity.class));
+    }
+    public void mathButtonClick(View view){
+        startActivity(new Intent(HomeActivity.this, MathActivity.class));
+    }
+    public void chargeButtonClick(View view){
+        startActivity(new Intent(HomeActivity.this, ChargeActivity.class));
+    }
+
+
+    public void initializeHomeTimer(){
         final Handler handler = new Handler();
         Runnable run = new Runnable() {
             @Override
@@ -85,21 +103,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
         handler.post(run);
-    }
-
-
-
-    public void driveButtonClick(View view){
-        startActivity(new Intent(HomeActivity.this, ManualDriveActivity.class));
-    }
-    public void chatButtonClick(View view){
-        startActivity(new Intent(HomeActivity.this, ChatActivity.class));
-    }
-    public void mathButtonClick(View view){
-        startActivity(new Intent(HomeActivity.this, MathActivity.class));
-    }
-    public void chargeButtonClick(View view){
-        startActivity(new Intent(HomeActivity.this, ChargeActivity.class));
     }
 
 
