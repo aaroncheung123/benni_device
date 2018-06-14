@@ -1,7 +1,9 @@
 package com.aaroncheung.client.Games.Drive;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,22 +52,78 @@ public class ManualDriveActivity extends SocketIO {
         manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
         manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
 
-        //*****************************
-        // Move Forward
-        //*****************************
 
+        initializeManualDriveTimer();
+        initializeForwardButton();
+        initializeBackwardButton();
+        initializeLeftButton();
+        initializeRightButton();
+    }
+
+
+    //*****************************
+    // Timer to check drive progress
+    //*****************************
+
+    public void initializeManualDriveTimer(){
+        final Handler handler = new Handler();
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
+                manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
+                handler.postDelayed(this, 10000);
+            }
+        };
+        handler.post(run);
+    }
+
+
+    //*****************************
+    // Calculating the increase in points for this game
+    //*****************************
+
+    public void calculateTotalPoints(){
+        Integer driveNumber = userInformationSingleton.getDriveProgressNumber();
+        Log.d(TAG, userInformationSingleton.getDriveProgressNumber().toString());
+        totalPoints += 1;
+        if(totalPoints == 3){
+            driveNumber += 1;
+            userInformationSingleton.setDriveProgressNumber(driveNumber);
+            manualDriveProgressBar.setProgress(driveNumber);
+            manualDriveTextView.setText(driveNumber.toString() + '%');
+            totalPoints = 0;
+        }
+    }
+
+    //*****************************
+    // Back and Home buttons
+    //*****************************
+
+    public void driveToHomeButtonClick(View view){
+        startActivity(new Intent(ManualDriveActivity.this, HomeActivity.class));
+    }
+    public void voiceDriveButtonClick(View view){
+        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
+    }
+
+
+    //*****************************
+    // Move Forward
+    //*****************************
+    @SuppressLint("ClickableViewAccessibility")
+    public void initializeForwardButton(){
         forwardButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Pressed
-                    try {
-                        calculateTotalPoints();
-                        attemptSend("forward");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                // Pressed
+                if (event.getAction() == MotionEvent.ACTION_DOWN) try {
+                    calculateTotalPoints();
+                    attemptSend("forward");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
                     // Released
                     try {
                         attemptSend("stop");
@@ -76,11 +134,14 @@ public class ManualDriveActivity extends SocketIO {
                 return true;
             }
         });
+    }
 
-        //*****************************
-        // Move Backward
-        //*****************************
 
+    //*****************************
+    // Move Backward
+    //*****************************
+    @SuppressLint("ClickableViewAccessibility")
+    public void initializeBackwardButton(){
         backwardButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -103,11 +164,14 @@ public class ManualDriveActivity extends SocketIO {
                 return true;
             }
         });
+    }
 
-        //*****************************
-        // Move Left
-        //*****************************
 
+    //*****************************
+    // Move Left
+    //*****************************
+    @SuppressLint("ClickableViewAccessibility")
+    public void initializeLeftButton(){
         leftButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -130,11 +194,14 @@ public class ManualDriveActivity extends SocketIO {
                 return true;
             }
         });
+    }
 
-        //*****************************
-        // Move Right
-        //*****************************
 
+    //*****************************
+    // Move Right
+    //*****************************
+    @SuppressLint("ClickableViewAccessibility")
+    public void initializeRightButton(){
         rightButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -159,24 +226,5 @@ public class ManualDriveActivity extends SocketIO {
         });
     }
 
-    public void calculateTotalPoints(){
-        Integer driveNumber = userInformationSingleton.getDriveProgressNumber();
-        Log.d(TAG, userInformationSingleton.getDriveProgressNumber().toString());
-        totalPoints += 1;
-        if(totalPoints == 3){
-            driveNumber += 1;
-            userInformationSingleton.setDriveProgressNumber(driveNumber);
-            manualDriveProgressBar.setProgress(driveNumber);
-            manualDriveTextView.setText(driveNumber.toString() + '%');
-            totalPoints = 0;
-        }
-    }
-
-    public void driveToHomeButtonClick(View view){
-        startActivity(new Intent(ManualDriveActivity.this, HomeActivity.class));
-    }
-    public void voiceDriveButtonClick(View view){
-        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
-    }
 
 }
