@@ -20,7 +20,6 @@ import java.net.URISyntaxException;
 public class ChatActivity extends SocketIO {
 
     String TAG = "debug_123";
-    ToggleButton toggleButton;
 
 
     @Override
@@ -28,15 +27,22 @@ public class ChatActivity extends SocketIO {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        toggleButton = (ToggleButton) findViewById(R.id.chatToggleButton);
+        try {
+            attemptSend("listen");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void chatToggleButtonClick(View view) throws JSONException {
-        if(toggleButton.isChecked()){
-            attemptSend("listen");
-        }
-        else{
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
             attemptSend("stop listening");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
     }
+
 }
