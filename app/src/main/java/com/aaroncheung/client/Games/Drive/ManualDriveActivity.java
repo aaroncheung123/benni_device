@@ -72,7 +72,7 @@ public class ManualDriveActivity extends SocketIO {
             public void run() {
                 manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
                 manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 1000);
             }
         };
         handler.post(run);

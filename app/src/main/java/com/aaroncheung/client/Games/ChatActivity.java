@@ -53,8 +53,9 @@ public class ChatActivity extends SocketIO {
     public void processSocketIOCommands(String command) {
         Log.d(TAG, "processSocketIOCommands");
         if(command.matches("add chatProgress")){
-            Log.d(TAG, "+1");
-            userInformationSingleton.setChatProgressNumber(userInformationSingleton.getChatProgressNumber() + 5);
+            Integer chatProgress = userInformationSingleton.getChatProgressNumber() + 5;
+            Log.d(TAG, "adding "+ chatProgress.toString());
+            userInformationSingleton.setChatProgressNumber(chatProgress);
         }
     }
 
@@ -84,7 +85,7 @@ public class ChatActivity extends SocketIO {
             public void run() {
                 chatProgressBar.setProgress(userInformationSingleton.getChatProgressNumber());
                 chatTextView.setText(userInformationSingleton.getChatProgressNumber().toString() + "%");
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 1000);
             }
         };
         handler.post(run);

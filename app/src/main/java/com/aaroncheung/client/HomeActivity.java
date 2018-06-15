@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                 mathProgressNumber = userInformationSingleton.getMathProgressNumber();
                 chargeProgressNumber = userInformationSingleton.getChargeProgressNumber();
 
-                Log.d(TAG, chatProgressNumber.toString());
+                //Log.d(TAG, chatProgressNumber.toString());
 
 
                 //SETTING PROGRESS BARS
@@ -92,11 +92,17 @@ public class HomeActivity extends AppCompatActivity {
                 happinessIndexTextView.setText(happinessIndexNumber.toString() + "%");
 
                 //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
-                if(happinessIndexNumber > 0){
-                    userInformationSingleton.setDriveProgressNumber(driveProgressNumber- decrementNumber);
-                    userInformationSingleton.setChatProgressNumber(chatProgressNumber- decrementNumber);
-                    userInformationSingleton.setMathProgressNumber(mathProgressNumber- decrementNumber);
-                    userInformationSingleton.setChargeProgressNumber(chargeProgressNumber- decrementNumber);
+                if(driveProgressNumber > 0) {
+                    userInformationSingleton.setDriveProgressNumber(driveProgressNumber - decrementNumber);
+                }
+                if(chargeProgressNumber > 0) {
+                    userInformationSingleton.setChatProgressNumber(chatProgressNumber - decrementNumber);
+                }
+                if(mathProgressNumber > 0) {
+                    userInformationSingleton.setMathProgressNumber(mathProgressNumber - decrementNumber);
+                }
+                if(chargeProgressNumber > 0) {
+                    userInformationSingleton.setChargeProgressNumber(chargeProgressNumber - decrementNumber);
                 }
 
                 handler.postDelayed(this, 10000);
