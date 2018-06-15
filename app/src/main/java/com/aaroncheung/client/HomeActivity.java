@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                 mathProgressNumber = userInformationSingleton.getMathProgressNumber();
                 chargeProgressNumber = userInformationSingleton.getChargeProgressNumber();
 
-                Log.d(TAG, driveProgressNumber.toString());
+                Log.d(TAG, chatProgressNumber.toString());
 
 
                 //SETTING PROGRESS BARS

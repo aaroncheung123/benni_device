@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -26,6 +27,7 @@ public class SocketIO extends AppCompatActivity{
 
         email = UserInformationSingleton.getInstance().getEmail();
         socket.connect();
+        socket.on(email, handleIncomingMessages);
 
     }
 
@@ -36,6 +38,20 @@ public class SocketIO extends AppCompatActivity{
             socket = IO.socket(url);
         } catch (URISyntaxException e) {}
     }
+
+
+    private Emitter.Listener handleIncomingMessages = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            SocketIO.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, args[0].toString());
+                    processSocketIOCommands(args[0].toString());
+                }
+            });
+        }
+    };
 
     protected void attemptSend(String message) throws JSONException {
         if (TextUtils.isEmpty(message)) {
@@ -51,4 +67,6 @@ public class SocketIO extends AppCompatActivity{
         super.onDestroy();
         socket.disconnect();
     }
+
+    public void processSocketIOCommands(String message){ }
 }

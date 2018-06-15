@@ -85,7 +85,7 @@ public class ManualDriveActivity extends SocketIO {
 
     public void calculateTotalPoints(){
         Integer driveNumber = userInformationSingleton.getDriveProgressNumber();
-        Log.d(TAG, userInformationSingleton.getDriveProgressNumber().toString());
+        //Log.d(TAG, userInformationSingleton.getDriveProgressNumber().toString());
         totalPoints += 1;
         if(totalPoints == 3){
             driveNumber += 1;

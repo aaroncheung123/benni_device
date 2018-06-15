@@ -38,23 +38,35 @@ public class ChatActivity extends SocketIO {
         setContentView(R.layout.activity_chat);
 
         userInformationSingleton = UserInformationSingleton.getInstance();
+        chatTextView = findViewById(R.id.chatTextView);
+        chatProgressBar = findViewById(R.id.chatProgressBar);
+
         initializeManualDriveTimer();
         try {
-            attemptSend("listen");
+            attemptSend("chat");
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void processSocketIOCommands(String command) {
+        Log.d(TAG, "processSocketIOCommands");
+        if(command.matches("add chatProgress")){
+            Log.d(TAG, "+1");
+            userInformationSingleton.setChatProgressNumber(userInformationSingleton.getChatProgressNumber() + 5);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "CHAT STOP");
         try {
             attemptSend("stop listening");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     public void chatToHomeButtonClick(View view){
