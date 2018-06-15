@@ -43,7 +43,7 @@ public class ChatActivity extends SocketIO {
 
         initializeManualDriveTimer();
         try {
-            attemptSend("chat");
+            attemptSend("open chat");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -59,18 +59,9 @@ public class ChatActivity extends SocketIO {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "CHAT STOP");
-        try {
-            attemptSend("stop listening");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void chatToHomeButtonClick(View view){
+    public void chatToHomeButtonClick(View view) throws JSONException {
+        attemptSend("exit chat");
         startActivity(new Intent(ChatActivity.this, HomeActivity.class));
     }
 
