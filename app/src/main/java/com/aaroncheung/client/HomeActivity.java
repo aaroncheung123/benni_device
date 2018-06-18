@@ -13,10 +13,13 @@ import com.aaroncheung.client.Games.ChargeActivity;
 import com.aaroncheung.client.Games.ChatActivity;
 import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
 import com.aaroncheung.client.Games.MathActivity;
+import com.aaroncheung.client.Networking.SocketIO;
 import com.aaroncheung.client.Networking.UserInformationSingleton;
 
+import org.json.JSONException;
 
-public class HomeActivity extends AppCompatActivity {
+
+public class HomeActivity extends SocketIO {
 
     private String TAG = "debug_123";
     private ProgressBar driveProgressBar;
@@ -29,8 +32,10 @@ public class HomeActivity extends AppCompatActivity {
     private Integer chargeProgressNumber;
     private TextView happinessIndexTextView;
     private Integer happinessIndexNumber;
+    private boolean emotionalStateChange;
+    private String emotionalState;
     UserInformationSingleton userInformationSingleton;
-    final private Integer decrementNumber = 1;
+    final private Integer decrementNumber = 5;
 
 
     @Override
@@ -45,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         mathProgressBar = findViewById(R.id.mathProgressBar);
         chargeProgressBar = findViewById(R.id.chargeProgressBar);
         happinessIndexTextView = findViewById(R.id.happinessIndex);
+        emotionalState = "Happy";
 
 
         Log.i(TAG, "Home onCreate");
@@ -90,6 +96,11 @@ public class HomeActivity extends AppCompatActivity {
                 //HAPPINESS INDEX CALCULATIONS
                 happinessIndexNumber = (driveProgressNumber + chargeProgressNumber + mathProgressNumber + chargeProgressNumber)/4;
                 happinessIndexTextView.setText(happinessIndexNumber.toString() + "%");
+                try {
+                    sendHappinessIndexNumber();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
                 if(driveProgressNumber > 0) {
@@ -109,6 +120,49 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
         handler.post(run);
+    }
+
+    public void sendHappinessIndexNumber() throws JSONException {
+        if(happinessIndexNumber > 80){
+            Log.d(TAG, "send HIN1: " + emotionalState);
+            if(!emotionalState.contains("Happy")){
+                emotionalStateChange = true;
+            }
+            emotionalState = "Happy";
+        }
+        else if(happinessIndexNumber > 60){
+            Log.d(TAG, "send HIN2: " + emotionalState);
+            if(!emotionalState.contains("Bored")){
+                emotionalStateChange = true;
+            }
+            emotionalState = "Bored";
+        }
+        else if(happinessIndexNumber > 30){
+            Log.d(TAG, "send HIN3: " + emotionalState);
+            if(!emotionalState.contains("Sad")){
+                emotionalStateChange = true;
+            }
+            emotionalState = "Sad";
+        }
+        else if(happinessIndexNumber > 1){
+            Log.d(TAG, "send HIN4: " + emotionalState);
+            if(!emotionalState.contains("Mad")){
+                emotionalStateChange = true;
+            }
+            emotionalState = "Mad";
+        }
+        else if(happinessIndexNumber == 1){
+            if(!emotionalState.contains("Broken")){
+                emotionalStateChange = true;
+            }
+            emotionalState = "Broken";
+        }
+
+        if(emotionalStateChange){
+            attemptSend(emotionalState.toString());
+            emotionalStateChange = false;
+        }
+
     }
 
 

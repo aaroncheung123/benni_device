@@ -67,9 +67,11 @@ public class ChatActivity extends SocketIO {
         }
     }
 
-    //*****************************
+    //--------------------------------------------------
+    //
     // Timer to check drive progress
-    //*****************************
+    //
+    //--------------------------------------------------
 
     public void initializeManualDriveTimer(){
         final Handler handler = new Handler();
