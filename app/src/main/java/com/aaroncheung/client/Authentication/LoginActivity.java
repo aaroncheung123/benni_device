@@ -59,39 +59,46 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginCheck() throws JSONException {
         JSONObject jsonObject = httpRequest.getMyJSONObject();
-        JSONObject jsonObjectInfo = (JSONObject) jsonObject.get("info");
-        JSONObject jsonObjectProgress = (JSONObject) jsonObject.get("progressNumbers");
 
-        //CHECKING IF ACCOUNT EXISTS
-        if(jsonObject != null){
-            String databasePassword = jsonObjectInfo.get("password").toString();
-            password = passwordEditText.getText().toString();
+        if(jsonObject == null){
+            Toast.makeText(this, "Please Connect to Wifi",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            JSONObject jsonObjectInfo = (JSONObject) jsonObject.get("info");
+            JSONObject jsonObjectProgress = (JSONObject) jsonObject.get("progressNumbers");
 
-            //CHECKING IF PASSWORDS MATCH
-            if(password.matches(databasePassword)){
-                Toast.makeText(this, "Login Successful",
-                        Toast.LENGTH_LONG).show();
+            //CHECKING IF ACCOUNT EXISTS
+            if(jsonObject != null){
+                String databasePassword = jsonObjectInfo.get("password").toString();
+                password = passwordEditText.getText().toString();
 
-
-                //INITIALIZING SINGLETON INFORMATION
-                UserInformationSingleton userInfo = UserInformationSingleton.getInstance();
-                userInfo.setEmail(jsonObjectInfo.get("email").toString());
-                userInfo.setDriveProgressNumber((Integer) jsonObjectProgress.get("drive"));
-                userInfo.setChatProgressNumber((Integer) jsonObjectProgress.get("chat"));
-                userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
-                userInfo.setChargeProgressNumber((Integer) jsonObjectProgress.get("charge"));
+                //CHECKING IF PASSWORDS MATCH
+                if(password.matches(databasePassword)){
+                    Toast.makeText(this, "Login Successful",
+                            Toast.LENGTH_LONG).show();
 
 
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    //INITIALIZING SINGLETON INFORMATION
+                    UserInformationSingleton userInfo = UserInformationSingleton.getInstance();
+                    userInfo.setEmail(jsonObjectInfo.get("email").toString());
+                    userInfo.setDriveProgressNumber((Integer) jsonObjectProgress.get("drive"));
+                    userInfo.setChatProgressNumber((Integer) jsonObjectProgress.get("chat"));
+                    userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
+                    userInfo.setChargeProgressNumber((Integer) jsonObjectProgress.get("charge"));
+
+
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                }
+                else{
+                    Toast.makeText(this, "Wrong Password",
+                            Toast.LENGTH_LONG).show();
+                }
             }
             else{
-                Toast.makeText(this, "Wrong Password",
+                Toast.makeText(this, "Account Does Not Exist",
                         Toast.LENGTH_LONG).show();
             }
-        }
-        else{
-            Toast.makeText(this, "Account Does Not Exist",
-                    Toast.LENGTH_LONG).show();
         }
     }
 

@@ -35,7 +35,7 @@ public class HomeActivity extends SocketIO {
     private boolean emotionalStateChange;
     private String emotionalState;
     UserInformationSingleton userInformationSingleton;
-    final private Integer decrementNumber = 5;
+    final private Integer decrementNumber = 10;
 
 
     @Override
@@ -124,28 +124,28 @@ public class HomeActivity extends SocketIO {
 
     public void sendHappinessIndexNumber() throws JSONException {
         if(happinessIndexNumber > 80){
-            Log.d(TAG, "send HIN1: " + emotionalState);
+            Log.d(TAG, "HIN1: " + emotionalState);
             if(!emotionalState.contains("Happy")){
                 emotionalStateChange = true;
             }
             emotionalState = "Happy";
         }
         else if(happinessIndexNumber > 60){
-            Log.d(TAG, "send HIN2: " + emotionalState);
+            Log.d(TAG, "HIN2: " + emotionalState);
             if(!emotionalState.contains("Bored")){
                 emotionalStateChange = true;
             }
             emotionalState = "Bored";
         }
         else if(happinessIndexNumber > 30){
-            Log.d(TAG, "send HIN3: " + emotionalState);
+            Log.d(TAG, "HIN3: " + emotionalState);
             if(!emotionalState.contains("Sad")){
                 emotionalStateChange = true;
             }
             emotionalState = "Sad";
         }
         else if(happinessIndexNumber > 1){
-            Log.d(TAG, "send HIN4: " + emotionalState);
+            Log.d(TAG, "HIN4: " + emotionalState);
             if(!emotionalState.contains("Mad")){
                 emotionalStateChange = true;
             }
@@ -159,6 +159,7 @@ public class HomeActivity extends SocketIO {
         }
 
         if(emotionalStateChange){
+            Log.d(TAG, "SENDING!!!!!: " + emotionalState);
             attemptSend(emotionalState.toString());
             emotionalStateChange = false;
         }
