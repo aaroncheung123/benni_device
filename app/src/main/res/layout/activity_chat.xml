@@ -57,9 +57,19 @@
         android:id="@+id/imageView"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chatProgressBar"
         app:srcCompat="@drawable/chat" />
+
+    <Button
+        android:id="@+id/listenChatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="listenChatButtonClick"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="323dp" />
 </android.support.constraint.ConstraintLayout>

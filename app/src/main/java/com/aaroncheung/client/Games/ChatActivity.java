@@ -42,11 +42,6 @@ public class ChatActivity extends SocketIO {
         chatProgressBar = findViewById(R.id.chatProgressBar);
 
         initializeManualDriveTimer();
-        try {
-            attemptSend("open chat");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -61,8 +56,15 @@ public class ChatActivity extends SocketIO {
 
 
     public void chatToHomeButtonClick(View view) throws JSONException {
-        attemptSend("exit chat");
         startActivity(new Intent(ChatActivity.this, HomeActivity.class));
+    }
+
+    public void listenChatButtonClick(View view){
+        try {
+            attemptSend("open chat");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     //*****************************
