@@ -13,7 +13,6 @@ import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.HttpRequest;
 import com.aaroncheung.client.R;
 import com.aaroncheung.client.Helper.UserInformationSingleton;
-import com.aaroncheung.client.TimerService;
 
 import org.json.JSONException;
 import org.json.JSONObject;

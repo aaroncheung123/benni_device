@@ -13,6 +13,7 @@ import com.aaroncheung.client.Games.ChargeActivity;
 import com.aaroncheung.client.Games.ChatActivity;
 import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
 import com.aaroncheung.client.Games.MathActivity;
+import com.aaroncheung.client.Helper.TimerService;
 import com.aaroncheung.client.Networking.SocketIO;
 import com.aaroncheung.client.Helper.UserInformationSingleton;
 
@@ -22,25 +23,36 @@ import org.json.JSONException;
 public class HomeActivity extends SocketIO {
 
     private String TAG = "debug_123";
+
+    //Progress Bars
     private ProgressBar driveProgressBar;
     private ProgressBar chatProgressBar;
     private ProgressBar mathProgressBar;
     private ProgressBar chargeProgressBar;
+
+    //Progress Numbers
     private Integer driveProgressNumber;
     private Integer chatProgressNumber;
     private Integer mathProgressNumber;
     private Integer chargeProgressNumber;
+
+    //Happiness Index
     private TextView happinessIndexTextView;
     private Integer happinessIndexNumber;
+
+    //Emotional State
     private boolean emotionalStateChange;
     private String emotionalState;
+
+    //Battery
     private BatteryManager batteryManager;
     private int batteryLevel;
-    UserInformationSingleton userInformationSingleton;
-    final private Integer decrementNumber = 1;
-    static HomeActivity instance;
-    private Intent timerServiceIntent;
 
+    //Helper
+    private UserInformationSingleton userInformationSingleton;
+    final private Integer decrementNumber = 1;
+    private Intent timerServiceIntent;
+    public static HomeActivity instance;
 
 
     @Override
@@ -131,7 +143,6 @@ public class HomeActivity extends SocketIO {
     }
 
     public void decrementProgressNumbers(){
-        //GETTING PROGRESS NUMBERS FROM SINGLETON AND DECREMENTING
         if(driveProgressNumber > 0) {
             userInformationSingleton.setDriveProgressNumber(driveProgressNumber - decrementNumber);
         }
@@ -145,28 +156,24 @@ public class HomeActivity extends SocketIO {
 
     public void sendHappinessIndexNumber() throws JSONException {
         if(happinessIndexNumber > 80){
-            //Log.d(TAG, "HIN1: " + emotionalState);
             if(!emotionalState.contains("Happy")){
                 emotionalStateChange = true;
             }
             emotionalState = "Happy";
         }
         else if(happinessIndexNumber > 60){
-            //Log.d(TAG, "HIN2: " + emotionalState);
             if(!emotionalState.contains("Bored")){
                 emotionalStateChange = true;
             }
             emotionalState = "Bored";
         }
         else if(happinessIndexNumber > 30){
-            //Log.d(TAG, "HIN3: " + emotionalState);
             if(!emotionalState.contains("Sad")){
                 emotionalStateChange = true;
             }
             emotionalState = "Sad";
         }
         else if(happinessIndexNumber > 1){
-            //Log.d(TAG, "HIN4: " + emotionalState);
             if(!emotionalState.contains("Mad")){
                 emotionalStateChange = true;
             }

@@ -1,4 +1,4 @@
-package com.aaroncheung.client;
+package com.aaroncheung.client.Helper;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,9 +6,12 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.aaroncheung.client.HomeActivity;
+
 public class TimerService extends Service {
 
-    HomeActivity homeActivity;
+    private HomeActivity homeActivity;
+    private UserInformationSingleton userInformationSingleton;
 
     @Nullable
     @Override
@@ -18,6 +21,7 @@ public class TimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        userInformationSingleton = UserInformationSingleton.getInstance();
         homeActivity = HomeActivity.instance;
         startTimer();
         return super.onStartCommand(intent, flags, startId);

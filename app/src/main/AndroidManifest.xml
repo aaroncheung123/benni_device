@@ -25,7 +25,7 @@
         <activity android:name=".Games.MathActivity" />
         <activity android:name=".Games.ChargeActivity" />
         <activity android:name=".Games.Drive.VoiceDriveActivity"></activity>
-        <service android:name=".TimerService"></service>
+        <service android:name=".Helper.TimerService"></service>
     </application>
 
 </manifest>
