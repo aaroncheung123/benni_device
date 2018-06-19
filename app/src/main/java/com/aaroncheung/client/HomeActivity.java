@@ -40,11 +40,13 @@ public class HomeActivity extends SocketIO {
     final private Integer decrementNumber = 1;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         userInformationSingleton = UserInformationSingleton.getInstance();
+
         Log.i(TAG, "Home onCreate");
 
         //SETTING PROGRESS BARS

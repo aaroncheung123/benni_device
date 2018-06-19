@@ -13,6 +13,7 @@ import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.HttpRequest;
 import com.aaroncheung.client.R;
 import com.aaroncheung.client.Helper.UserInformationSingleton;
+import com.aaroncheung.client.TimerService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailLoginEditText;
     private EditText passwordEditText;
     private String password;
+    private Intent timerServiceIntent;
 
 
 
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         emailLoginEditText = findViewById(R.id.emailLoginEditText);
         passwordEditText = findViewById(R.id.passwordLoginEditText);
+        timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
 
         Log.d(TAG, "Login onCreate");
         httpRequest = new HttpRequest(this);
@@ -86,6 +89,9 @@ public class LoginActivity extends AppCompatActivity {
                     userInfo.setChatProgressNumber((Integer) jsonObjectProgress.get("chat"));
                     userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
                     userInfo.setChargeProgressNumber((Integer) jsonObjectProgress.get("charge"));
+
+                    //STARTING SERVICE TIMER
+                    startService(timerServiceIntent);
 
 
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
