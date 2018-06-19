@@ -38,6 +38,8 @@ public class HomeActivity extends SocketIO {
     private int batteryLevel;
     UserInformationSingleton userInformationSingleton;
     final private Integer decrementNumber = 1;
+    static HomeActivity instance;
+    private Intent timerServiceIntent;
 
 
 
@@ -46,6 +48,12 @@ public class HomeActivity extends SocketIO {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         userInformationSingleton = UserInformationSingleton.getInstance();
+        instance = this;
+
+        //STARTING SERVICE TIMER
+        timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
+        startService(timerServiceIntent);
+
 
         Log.i(TAG, "Home onCreate");
 
@@ -177,6 +185,10 @@ public class HomeActivity extends SocketIO {
             emotionalStateChange = false;
         }
 
+    }
+
+    public void testing(){
+        Log.d(TAG, "HOME ACTIVITY TEST IS WORKING");
     }
 
 

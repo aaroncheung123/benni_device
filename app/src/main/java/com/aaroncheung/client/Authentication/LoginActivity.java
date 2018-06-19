@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailLoginEditText;
     private EditText passwordEditText;
     private String password;
-    private Intent timerServiceIntent;
 
 
 
@@ -38,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         emailLoginEditText = findViewById(R.id.emailLoginEditText);
         passwordEditText = findViewById(R.id.passwordLoginEditText);
-        timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
+
 
         Log.d(TAG, "Login onCreate");
         httpRequest = new HttpRequest(this);
@@ -90,8 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
                     userInfo.setChargeProgressNumber((Integer) jsonObjectProgress.get("charge"));
 
-                    //STARTING SERVICE TIMER
-                    startService(timerServiceIntent);
+
 
 
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));

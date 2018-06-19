@@ -18,7 +18,7 @@ public class TimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //homeActivity = HomeActivity
+        homeActivity = HomeActivity.instance;
         startTimer();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -29,7 +29,7 @@ public class TimerService extends Service {
         Runnable run = new Runnable() {
             @Override
             public void run() {
-
+                homeActivity.testing();
                 handler.postDelayed(this, 10000);
             }
         };
