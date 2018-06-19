@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.SocketIO;
-import com.aaroncheung.client.Networking.UserInformationSingleton;
+import com.aaroncheung.client.Helper.UserInformationSingleton;
 import com.aaroncheung.client.R;
 import org.json.JSONException;
 

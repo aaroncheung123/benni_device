@@ -1,4 +1,8 @@
-package com.aaroncheung.client.Networking;
+package com.aaroncheung.client.Helper;
+
+import android.os.BatteryManager;
+
+import static android.content.Context.BATTERY_SERVICE;
 
 public class UserInformationSingleton {
 
@@ -7,6 +11,8 @@ public class UserInformationSingleton {
     private Integer chatProgressNumber;
     private Integer mathProgressNumber;
     private Integer chargeProgressNumber;
+    private BatteryManager batteryManager;
+    private int batteryLevel;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
 
     private static UserInformationSingleton instance = null;

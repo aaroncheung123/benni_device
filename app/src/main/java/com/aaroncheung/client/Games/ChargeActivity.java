@@ -8,14 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.aaroncheung.client.Helper.UserInformationSingleton;
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.R;
 
 public class ChargeActivity extends AppCompatActivity {
 
     private String TAG = "debug_123";
-    private BatteryManager batteryManager;
-    private int batteryLevel;
     private TextView headChargeTextView;
     private TextView bodyChargeTextView;
 
@@ -24,14 +23,11 @@ public class ChargeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charge);
 
-        batteryManager = (BatteryManager)getSystemService(BATTERY_SERVICE);
-        batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-
         headChargeTextView = findViewById(R.id.headChargeTextView);
         bodyChargeTextView = findViewById(R.id.bodyChargeTextView);
 
-        headChargeTextView.setText(batteryLevel + "%");
-        Log.d(TAG, String.valueOf(batteryLevel));
+        headChargeTextView.setText(UserInformationSingleton.getInstance().getChargeProgressNumber() + "%");
+        Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
     }
 
     public void chargeToHomeButtonClick(View view){

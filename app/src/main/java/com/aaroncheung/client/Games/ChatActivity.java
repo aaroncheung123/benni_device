@@ -2,34 +2,28 @@ package com.aaroncheung.client.Games;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.SocketIO;
-import com.aaroncheung.client.Networking.UserInformationSingleton;
+import com.aaroncheung.client.Helper.UserInformationSingleton;
 import com.aaroncheung.client.R;
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
-
-import java.net.URISyntaxException;
 
 public class ChatActivity extends SocketIO {
 
     String TAG = "debug_123";
 
-    TextView chatTextView;
-    ProgressBar chatProgressBar;
-    UserInformationSingleton userInformationSingleton;
+    private TextView chatTextView;
+    private ProgressBar chatProgressBar;
+    private UserInformationSingleton userInformationSingleton;
+    private ToggleButton listenToggleButton;
 
 
     @Override
@@ -40,6 +34,7 @@ public class ChatActivity extends SocketIO {
         userInformationSingleton = UserInformationSingleton.getInstance();
         chatTextView = findViewById(R.id.chatTextView);
         chatProgressBar = findViewById(R.id.chatProgressBar);
+        listenToggleButton = findViewById(R.id.listenToggleButton);
 
         initializeManualDriveTimer();
     }
@@ -52,6 +47,9 @@ public class ChatActivity extends SocketIO {
             Log.d(TAG, "adding "+ chatProgress.toString());
             userInformationSingleton.setChatProgressNumber(chatProgress);
         }
+        else if(command.matches("stop listening")){
+            listenToggleButton.setChecked(false);
+        }
     }
 
 
@@ -60,12 +58,16 @@ public class ChatActivity extends SocketIO {
     }
 
     public void listenChatButtonClick(View view){
-        try {
-            attemptSend("open chat");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(listenToggleButton.isChecked()){
+            try {
+                attemptSend("listen");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
     }
+
 
     //--------------------------------------------------
     //

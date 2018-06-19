@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.HttpRequest;
 import com.aaroncheung.client.R;
-import com.aaroncheung.client.Networking.UserInformationSingleton;
+import com.aaroncheung.client.Helper.UserInformationSingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject jsonObject = httpRequest.getMyJSONObject();
 
         if(jsonObject == null){
-            Toast.makeText(this, "Please Connect to Wifi",
+            Toast.makeText(this, "Connect to wifi or wait 5 seconds and hit login again",
                     Toast.LENGTH_LONG).show();
         }
         else {
