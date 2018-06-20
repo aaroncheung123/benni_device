@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonProgressNumbersBody.put("chat", 80);
                 jsonProgressNumbersBody.put("math", 70);
                 jsonProgressNumbersBody.put("charge", 90);
-                
+
 
                 jsonFinal.put("info", jsonInfoBody);
                 jsonFinal.put("progressNumbers", jsonProgressNumbersBody);
