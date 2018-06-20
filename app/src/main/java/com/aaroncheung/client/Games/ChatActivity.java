@@ -47,6 +47,9 @@ public class ChatActivity extends SocketIO {
             Log.d(TAG, "adding "+ chatProgress.toString());
             userInformationSingleton.setChatProgressNumber(chatProgress);
         }
+        else if(command.matches("listening")){
+            listenToggleButton.setChecked(true);
+        }
         else if(command.matches("stop listening")){
             listenToggleButton.setChecked(false);
         }
