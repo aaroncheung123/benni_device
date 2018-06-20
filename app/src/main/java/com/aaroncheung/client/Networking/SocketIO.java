@@ -21,11 +21,13 @@ public class SocketIO extends AppCompatActivity{
     String TAG = "debug_123";
     private String url = UserInformationSingleton.getInstance().getSERVER_URL();
     private String email;
+    public static SocketIO instance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        instance = this;
         email = UserInformationSingleton.getInstance().getEmail();
         socket.connect();
         socket.on(email, handleIncomingMessages);
@@ -54,7 +56,7 @@ public class SocketIO extends AppCompatActivity{
         }
     };
 
-    protected void attemptSend(String message) throws JSONException {
+    public void attemptSend(String message) throws JSONException {
         if (TextUtils.isEmpty(message)) {
             return;
         }

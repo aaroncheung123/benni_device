@@ -11,10 +11,15 @@ public class UserInformationSingleton {
     private Integer chatProgressNumber;
     private Integer mathProgressNumber;
     private Integer chargeProgressNumber;
-    private BatteryManager batteryManager;
-    private int batteryLevel;
+    private Integer happinessIndexNumber;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
 
+
+    //----------------------------------------------
+    //
+    // SINGLETON SET UP
+    //
+    //----------------------------------------------
     private static UserInformationSingleton instance = null;
     private UserInformationSingleton() {
         // Exists only to defeat instantiation.
@@ -27,6 +32,13 @@ public class UserInformationSingleton {
         return instance;
     }
 
+
+
+    //----------------------------------------------
+    //
+    // EMAIL
+    //
+    //----------------------------------------------
     public void setEmail(String email){
         this.email = email;
     }
@@ -34,6 +46,12 @@ public class UserInformationSingleton {
         return email;
     }
 
+
+    //----------------------------------------------
+    //
+    // PROGRESS NUMBERS
+    //
+    //----------------------------------------------
     public void setDriveProgressNumber(int number){
         if(number >= 100){
             driveProgressNumber = 100;
@@ -97,8 +115,28 @@ public class UserInformationSingleton {
         return chargeProgressNumber;
     }
 
+
+    //----------------------------------------------
+    //
+    // SERVER URL
+    //
+    //----------------------------------------------
     public String getSERVER_URL(){
         return SERVER_URL;
+    }
+
+
+
+    //----------------------------------------------
+    //
+    // SINGLETON SET UP
+    //
+    //----------------------------------------------
+    public void setHappinessIndexNumber(int number){
+        happinessIndexNumber = number;
+    }
+    public int getHappinessIndexNumber(){
+        return happinessIndexNumber;
     }
 
 
