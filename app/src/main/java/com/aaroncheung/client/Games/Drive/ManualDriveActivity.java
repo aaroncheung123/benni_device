@@ -31,11 +31,15 @@ public class ManualDriveActivity extends SocketIO {
     private Integer totalPoints;
     private UserInformationSingleton userInformationSingleton;
 
+    public static ManualDriveActivity instance;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_drive);
+
+        instance = this;
 
         userInformationSingleton = UserInformationSingleton.getInstance();
         totalPoints = 0;
@@ -51,8 +55,6 @@ public class ManualDriveActivity extends SocketIO {
         manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
         manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
 
-
-        initializeManualDriveTimer();
         initializeForwardButton();
         initializeBackwardButton();
         initializeLeftButton();
@@ -60,27 +62,23 @@ public class ManualDriveActivity extends SocketIO {
     }
 
 
-    //*****************************
-    // Timer to check drive progress
-    //*****************************
 
-    public void initializeManualDriveTimer(){
-        final Handler handler = new Handler();
-        Runnable run = new Runnable() {
-            @Override
-            public void run() {
-                manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
-                manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
-                handler.postDelayed(this, 1000);
-            }
-        };
-        handler.post(run);
+    //--------------------------------------------------
+    //
+    // TIMER UPDATES THE PROGRESS BAR AND PERCENTAGE
+    //
+    //--------------------------------------------------
+    public void updateManualDriveNumbers(){
+        manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
+        manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
     }
 
 
-    //*****************************
+    //--------------------------------------------------
+    //
     // Calculating the increase in points for this game
-    //*****************************
+    //
+    //--------------------------------------------------
 
     public void calculateTotalPoints(){
         Integer driveNumber = userInformationSingleton.getDriveProgressNumber();
@@ -95,21 +93,25 @@ public class ManualDriveActivity extends SocketIO {
         }
     }
 
-    //*****************************
-    // Back and Home buttons
-    //*****************************
+    //--------------------------------------------------
+    //
+    // Home buttons
+    //
+    //--------------------------------------------------
 
     public void driveToHomeButtonClick(View view){
         startActivity(new Intent(ManualDriveActivity.this, HomeActivity.class));
     }
-    public void voiceDriveButtonClick(View view){
-        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
-    }
+//    public void voiceDriveButtonClick(View view){
+//        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
+//    }
 
 
-    //*****************************
+    //--------------------------------------------------
+    //
     // Move Forward
-    //*****************************
+    //
+    //--------------------------------------------------
     @SuppressLint("ClickableViewAccessibility")
     public void initializeForwardButton(){
         forwardButton.setOnTouchListener(new View.OnTouchListener() {
@@ -136,9 +138,11 @@ public class ManualDriveActivity extends SocketIO {
     }
 
 
-    //*****************************
+    //--------------------------------------------------
+    //
     // Move Backward
-    //*****************************
+    //
+    //--------------------------------------------------
     @SuppressLint("ClickableViewAccessibility")
     public void initializeBackwardButton(){
         backwardButton.setOnTouchListener(new View.OnTouchListener() {
@@ -166,9 +170,11 @@ public class ManualDriveActivity extends SocketIO {
     }
 
 
-    //*****************************
+    //--------------------------------------------------
+    //
     // Move Left
-    //*****************************
+    //
+    //--------------------------------------------------
     @SuppressLint("ClickableViewAccessibility")
     public void initializeLeftButton(){
         leftButton.setOnTouchListener(new View.OnTouchListener() {
@@ -196,9 +202,11 @@ public class ManualDriveActivity extends SocketIO {
     }
 
 
-    //*****************************
+    //--------------------------------------------------
+    //
     // Move Right
-    //*****************************
+    //
+    //--------------------------------------------------
     @SuppressLint("ClickableViewAccessibility")
     public void initializeRightButton(){
         rightButton.setOnTouchListener(new View.OnTouchListener() {

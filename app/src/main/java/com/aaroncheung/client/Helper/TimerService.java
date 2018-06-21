@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
 import com.aaroncheung.client.HomeActivity;
 import com.aaroncheung.client.Networking.SocketIO;
 
@@ -21,6 +22,7 @@ public class TimerService extends Service {
     //INSTANCES OF ACTIVITIES
     private SocketIO socketIO;
     private HomeActivity homeActivity;
+    private ManualDriveActivity manualDriveActivity;
 
     //BATTERY
     private BatteryManager batteryManager;
@@ -30,7 +32,6 @@ public class TimerService extends Service {
     private int driveProgressNumber;
     private int chatProgressNumber;
     private int mathProgressNumber;
-    private int chargeProgressNumber;
 
     //HAPPINESS INDEX NUMBER
     private int happinessIndexNumber;
@@ -40,7 +41,7 @@ public class TimerService extends Service {
     private String emotionalState;
 
     //HELPER
-    final private Integer decrementNumber = 10;
+    final private Integer decrementNumber = 1;
 
 
     //----------------------------------------------
@@ -62,6 +63,7 @@ public class TimerService extends Service {
         //INSTANCE
         socketIO = SocketIO.instance;
         homeActivity = HomeActivity.instance;
+        manualDriveActivity = ManualDriveActivity.instance;
 
         //BATTERY INIT
         batteryManager = (BatteryManager)getSystemService(BATTERY_SERVICE);
@@ -101,6 +103,10 @@ public class TimerService extends Service {
                 //HOME ACTIVITY
                 homeActivity.updateDisplayNumbers();
                 handler.postDelayed(this, 10000);
+
+                //DRIVE ACTIVITY
+                //manualDriveActivity.updateManualDriveNumbers();
+
             }
         };
         handler.post(run);
@@ -133,7 +139,6 @@ public class TimerService extends Service {
         driveProgressNumber = userInformationSingleton.getDriveProgressNumber();
         chatProgressNumber = userInformationSingleton.getChatProgressNumber();
         mathProgressNumber = userInformationSingleton.getMathProgressNumber();
-        chargeProgressNumber = userInformationSingleton.getChargeProgressNumber();
     }
 
     //----------------------------------------------
