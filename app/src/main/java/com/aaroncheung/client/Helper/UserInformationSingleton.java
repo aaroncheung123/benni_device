@@ -13,6 +13,7 @@ public class UserInformationSingleton {
     private Integer chargeProgressNumber;
     private Integer happinessIndexNumber;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
+    private Boolean setManualDriveActivityCheck = false;
 
 
     //----------------------------------------------

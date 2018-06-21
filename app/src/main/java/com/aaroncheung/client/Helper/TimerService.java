@@ -104,8 +104,6 @@ public class TimerService extends Service {
                 homeActivity.updateDisplayNumbers();
                 handler.postDelayed(this, 10000);
 
-                //DRIVE ACTIVITY
-                //manualDriveActivity.updateManualDriveNumbers();
 
             }
         };

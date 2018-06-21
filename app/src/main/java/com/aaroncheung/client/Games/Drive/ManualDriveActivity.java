@@ -38,7 +38,6 @@ public class ManualDriveActivity extends SocketIO {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_drive);
-
         instance = this;
 
         userInformationSingleton = UserInformationSingleton.getInstance();
