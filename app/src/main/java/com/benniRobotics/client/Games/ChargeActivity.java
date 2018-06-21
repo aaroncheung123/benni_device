@@ -1,4 +1,4 @@
-package com.aaroncheung.client.Games;
+package com.benniRobotics.client.Games;
 
 import android.content.Intent;
 import android.os.BatteryManager;
@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.aaroncheung.client.Helper.UserInformationSingleton;
-import com.aaroncheung.client.HomeActivity;
-import com.aaroncheung.client.R;
+import com.benniRobotics.client.Helper.UserInformationSingleton;
+import com.benniRobotics.client.HomeActivity;
+import com.benniRobotics.client.R;
 
 public class ChargeActivity extends AppCompatActivity {
 

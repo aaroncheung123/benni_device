@@ -1,4 +1,4 @@
-package com.aaroncheung.client.Games;
+package com.benniRobotics.client.Games;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,10 +9,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.aaroncheung.client.HomeActivity;
-import com.aaroncheung.client.Networking.SocketIO;
-import com.aaroncheung.client.Helper.UserInformationSingleton;
-import com.aaroncheung.client.R;
+import com.benniRobotics.client.HomeActivity;
+import com.benniRobotics.client.Networking.SocketIO;
+import com.benniRobotics.client.Helper.UserInformationSingleton;
+import com.benniRobotics.client.R;
 
 import org.json.JSONException;
 

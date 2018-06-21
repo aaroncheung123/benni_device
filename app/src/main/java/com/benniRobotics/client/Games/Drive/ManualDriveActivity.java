@@ -1,4 +1,4 @@
-package com.aaroncheung.client.Games.Drive;
+package com.benniRobotics.client.Games.Drive;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.aaroncheung.client.HomeActivity;
-import com.aaroncheung.client.Networking.SocketIO;
-import com.aaroncheung.client.Helper.UserInformationSingleton;
-import com.aaroncheung.client.R;
+import com.benniRobotics.client.HomeActivity;
+import com.benniRobotics.client.Networking.SocketIO;
+import com.benniRobotics.client.Helper.UserInformationSingleton;
+import com.benniRobotics.client.R;
 import org.json.JSONException;
 
 public class ManualDriveActivity extends SocketIO {
@@ -58,8 +58,9 @@ public class ManualDriveActivity extends SocketIO {
         initializeBackwardButton();
         initializeLeftButton();
         initializeRightButton();
-    }
+        updateManualDriveNumbers();
 
+    }
 
 
     //--------------------------------------------------
@@ -68,10 +69,18 @@ public class ManualDriveActivity extends SocketIO {
     //
     //--------------------------------------------------
     public void updateManualDriveNumbers(){
-        manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
-        manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
-    }
+        final Handler handler = new Handler();
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
+                manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
+                handler.postDelayed(this, 3600);
+            }
+        };
+        handler.post(run);
 
+    }
 
     //--------------------------------------------------
     //

@@ -1,4 +1,4 @@
-package com.aaroncheung.client.Helper;
+package com.benniRobotics.client.Helper;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
-import com.aaroncheung.client.HomeActivity;
-import com.aaroncheung.client.Networking.SocketIO;
+import com.benniRobotics.client.Games.Drive.ManualDriveActivity;
+import com.benniRobotics.client.HomeActivity;
+import com.benniRobotics.client.Networking.SocketIO;
 
 import org.json.JSONException;
 
@@ -73,12 +73,13 @@ public class TimerService extends Service {
         emotionalState = "Happy";
 
         backgroundTimer();
+        decrementTimer();
         return super.onStartCommand(intent, flags, startId);
     }
 
     //----------------------------------------------
     //
-    // 10 SECOND TIMER
+    // Update progress every second
     //
     //----------------------------------------------
     public void backgroundTimer(){
@@ -91,7 +92,6 @@ public class TimerService extends Service {
                 Log.d(TAG, "Timer+++: ");
                 calculateCharge();
                 setProgressNumbers();
-                decrementProgressNumbers();
                 setHappinessIndex();
                 try {
                     sendHappinessIndexNumber();
@@ -99,11 +99,37 @@ public class TimerService extends Service {
                     e.printStackTrace();
                 }
 
-
                 //HOME ACTIVITY
                 homeActivity.updateDisplayNumbers();
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 3600);
 
+
+            }
+        };
+        handler.post(run);
+    }
+
+    //----------------------------------------------
+    //
+    // Decrement Timer
+    //
+    //----------------------------------------------
+    public void decrementTimer(){
+        final Handler handler = new Handler();
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+
+                //BACKGROUND
+                Log.d(TAG, "Decrement+++: ");
+                decrementProgressNumbers();
+                try {
+                    sendHappinessIndexNumber();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                handler.postDelayed(this, 21600);
 
             }
         };

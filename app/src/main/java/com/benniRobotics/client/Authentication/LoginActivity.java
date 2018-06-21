@@ -1,4 +1,4 @@
-package com.aaroncheung.client.Authentication;
+package com.benniRobotics.client.Authentication;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.aaroncheung.client.HomeActivity;
-import com.aaroncheung.client.Networking.HttpRequest;
-import com.aaroncheung.client.R;
-import com.aaroncheung.client.Helper.UserInformationSingleton;
+import com.benniRobotics.client.HomeActivity;
+import com.benniRobotics.client.Networking.HttpRequest;
+import com.benniRobotics.client.R;
+import com.benniRobotics.client.Helper.UserInformationSingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;

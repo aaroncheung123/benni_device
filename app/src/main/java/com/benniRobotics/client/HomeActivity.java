@@ -1,4 +1,4 @@
-package com.aaroncheung.client;
+package com.benniRobotics.client;
 
 import android.content.Intent;
 import android.os.BatteryManager;
@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.aaroncheung.client.Games.ChargeActivity;
-import com.aaroncheung.client.Games.ChatActivity;
-import com.aaroncheung.client.Games.Drive.ManualDriveActivity;
-import com.aaroncheung.client.Games.MathActivity;
-import com.aaroncheung.client.Helper.TimerService;
-import com.aaroncheung.client.Networking.SocketIO;
-import com.aaroncheung.client.Helper.UserInformationSingleton;
+import com.benniRobotics.client.Games.ChargeActivity;
+import com.benniRobotics.client.Games.ChatActivity;
+import com.benniRobotics.client.Games.Drive.ManualDriveActivity;
+import com.benniRobotics.client.Games.MathActivity;
+import com.benniRobotics.client.Helper.TimerService;
+import com.benniRobotics.client.Networking.SocketIO;
+import com.benniRobotics.client.Helper.UserInformationSingleton;
 
 import org.json.JSONException;
 

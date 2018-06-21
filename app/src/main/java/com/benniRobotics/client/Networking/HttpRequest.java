@@ -1,9 +1,9 @@
-package com.aaroncheung.client.Networking;
+package com.benniRobotics.client.Networking;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.aaroncheung.client.Helper.UserInformationSingleton;
+import com.benniRobotics.client.Helper.UserInformationSingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
