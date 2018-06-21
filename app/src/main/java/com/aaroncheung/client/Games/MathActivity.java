@@ -1,7 +1,6 @@
 package com.aaroncheung.client.Games;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,19 +11,34 @@ import com.aaroncheung.client.R;
 
 import org.json.JSONException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MathActivity extends SocketIO {
 
-    private TextView problemMathTextView;
+    private TextView problemOneMathTextView;
     private EditText solutionMathEditText;
+    private TextView problemoperatorMathTextView;
+    private TextView problemTwoMathTextView;
+
+    private int firstNumber;
+    private int secondNumber;
+    private int solution;
+
+
+    private Random rand = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math);
 
-        problemMathTextView = findViewById(R.id.problemMathTextView);
+        problemOneMathTextView = findViewById(R.id.problemOneMathTextView);
+        problemoperatorMathTextView = findViewById(R.id.problemOperatorMathTextView);
+        problemTwoMathTextView = findViewById(R.id.problemTwoMathTextView);
+
         solutionMathEditText = findViewById(R.id.solutionMathEditText);
-        problemMathTextView.setText("3 + 4");
 
 
         //He says ""Hi, can you help me with my math homework"
@@ -36,7 +50,7 @@ public class MathActivity extends SocketIO {
     }
 
     public void submitMathButtonClick(View view) throws JSONException {
-        if(solutionMathEditText.getText().toString().matches("7")){
+        if(solutionMathEditText.getText().toString().matches(String.valueOf(solution))){
             attemptSend("Turn Left");
             final Handler handler = new Handler();
             Runnable run = new Runnable() {
@@ -56,4 +70,32 @@ public class MathActivity extends SocketIO {
             attemptSend("Change SadFace");
         }
     }
+
+    public void additionSelectionButtonClick(View view){
+        firstNumber = rand.nextInt(10);
+        secondNumber = rand.nextInt(10);
+        solution = firstNumber + secondNumber;
+        problemOneMathTextView.setText(firstNumber);
+        problemoperatorMathTextView.setText("+");
+        problemTwoMathTextView.setText(secondNumber);
+    }
+
+    public void subtractionSelectionButtonClick(View view){
+        firstNumber = rand.nextInt(10);
+        secondNumber = rand.nextInt(10);
+        solution = firstNumber - secondNumber;
+        problemOneMathTextView.setText(firstNumber);
+        problemoperatorMathTextView.setText("-");
+        problemTwoMathTextView.setText(secondNumber);
+    }
+
+    public void multiplicationSelectionButtonClick(View view){
+        firstNumber = rand.nextInt(10);
+        secondNumber = rand.nextInt(10);
+        solution = firstNumber * secondNumber;
+        problemOneMathTextView.setText(firstNumber);
+        problemoperatorMathTextView.setText("*");
+        problemTwoMathTextView.setText(secondNumber);
+    }
+
 }

@@ -7,36 +7,159 @@
     tools:context=".Games.MathActivity">
 
     <TextView
-        android:id="@+id/problemMathTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="160dp"
-        android:layout_marginStart="166dp"
-        android:layout_marginTop="132dp"
-        android:text="3 + 4"
+        android:id="@+id/driveTextView3"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Math Games"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/mathProgressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="68dp"
+        android:progress="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveTextView3" />
+
+    <TextView
+        android:id="@+id/mathTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="100%"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveTextView3" />
+
+    <Button
+        android:id="@+id/mathSubtractionSelectButton"
+        android:layout_width="74dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:onClick="subtractionSelectionButtonClick"
+        android:text="-"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toStartOf="@+id/mathMultiplicationSelectButton"
+        app:layout_constraintStart_toEndOf="@+id/mathAdditionSelectButton"
+        app:layout_constraintTop_toBottomOf="@+id/mathProgressBar2" />
+
+    <Button
+        android:id="@+id/mathMultiplicationSelectButton"
+        android:layout_width="74dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="29dp"
+        android:onClick="multiplicationSelectionButtonClick"
+        android:text="*"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mathSubtractionSelectButton"
+        app:layout_constraintTop_toBottomOf="@+id/mathProgressBar2" />
+
+    <TextView
+        android:id="@+id/problemOneMathTextView"
+        android:layout_width="70dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginTop="272dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/solutionMathEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="42dp"
         android:ems="10"
         android:hint="Insert Answer Here"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/problemMathTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/problemOperatorMathTextView" />
 
     <Button
         android:id="@+id/submitMathButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="13dp"
         android:onClick="submitMathButtonClick"
         android:text="Submit"
-        tools:layout_editor_absoluteX="211dp"
-        tools:layout_editor_absoluteY="265dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/solutionMathEditText" />
+
+    <TextView
+        android:id="@+id/problemOperatorMathTextView"
+        android:layout_width="79dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="192dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="38dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/problemOneMathTextView"
+        app:layout_constraintTop_toBottomOf="@+id/mathSubtractionSelectButton" />
+
+    <TextView
+        android:id="@+id/problemTwoMathTextView"
+        android:layout_width="82dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="38dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/problemOperatorMathTextView"
+        app:layout_constraintTop_toBottomOf="@+id/mathMultiplicationSelectButton" />
+
+    <TextView
+        android:id="@+id/problemEqualsMathTextView"
+        android:layout_width="53dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="18dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/problemTwoMathTextView"
+        tools:layout_editor_absoluteY="281dp"
+        tools:text="=" />
+
+    <Button
+        android:id="@+id/mathAdditionSelectButton"
+        android:layout_width="74dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="28dp"
+        android:onClick="additionSelectionButtonClick"
+        android:text="+"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toStartOf="@+id/mathSubtractionSelectButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mathProgressBar2" />
+
 </android.support.constraint.ConstraintLayout>
