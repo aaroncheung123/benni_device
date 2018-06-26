@@ -1,5 +1,7 @@
 package com.benniRobotics.client.Helper;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Intent;
 import android.os.BatteryManager;
@@ -7,6 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.benniRobotics.client.Games.Drive.ManualDriveActivity;
 import com.benniRobotics.client.HomeActivity;
@@ -74,6 +77,7 @@ public class TimerService extends Service {
 
         backgroundTimer();
         decrementTimer();
+        robotLowBatteryAlert();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -135,6 +139,36 @@ public class TimerService extends Service {
         };
         handler.post(run);
     }
+
+    //----------------------------------------------
+    //
+    // Alerts user about low robot battery
+    //
+    //----------------------------------------------
+    public void robotLowBatteryAlert(){
+        final Handler handler = new Handler();
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+
+                //BACKGROUND
+                Log.d(TAG, "Check for low battery ");
+                if(UserInformationSingleton.getInstance().getRobotCharge() <= 20){
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(homeActivity)
+                        .setTitle("Battery Low")
+                        .setMessage("The Battery for Benni the Robot is low. Please Power Down and Charge")
+                        .create();
+
+                    alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                    alertDialog.show();
+                }
+                handler.postDelayed(this, 3600);
+            }
+        };
+        handler.post(run);
+    }
+
 
 
     @Override

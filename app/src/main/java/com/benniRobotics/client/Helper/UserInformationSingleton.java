@@ -12,6 +12,9 @@ public class UserInformationSingleton {
     private Integer mathProgressNumber;
     private Integer chargeProgressNumber;
     private Integer happinessIndexNumber;
+    private Integer robotCharge;
+    private Integer robotHeadCharge;
+    private Integer minLowCharge;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
     private Boolean setManualDriveActivityCheck = false;
 
@@ -141,4 +144,28 @@ public class UserInformationSingleton {
     }
 
 
+    public Integer getRobotCharge() {
+        return robotCharge;
+    }
+
+    public void setRobotCharge(Integer robotCharge) {
+        this.robotCharge = robotCharge;
+    }
+
+    public Integer getRobotHeadCharge() {
+        return robotHeadCharge;
+    }
+
+    public void setRobotHeadCharge(Integer robotHeadCharge) {
+        this.robotHeadCharge = robotHeadCharge;
+    }
+
+
+    public Integer getMinLowCharge() {
+        return minLowCharge;
+    }
+
+    public void setMinLowCharge(Integer minLowCharge) {
+        this.minLowCharge = minLowCharge;
+    }
 }
