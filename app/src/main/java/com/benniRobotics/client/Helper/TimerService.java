@@ -61,7 +61,6 @@ public class TimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        userInformationSingleton = UserInformationSingleton.getInstance();
 
         //INSTANCE
         socketIO = SocketIO.instance;
@@ -146,6 +145,7 @@ public class TimerService extends Service {
     //
     //----------------------------------------------
     public void robotLowBatteryAlert(){
+        userInformationSingleton = UserInformationSingleton.getInstance();
         final Handler handler = new Handler();
         Runnable run = new Runnable() {
             @Override
@@ -153,7 +153,7 @@ public class TimerService extends Service {
 
                 //BACKGROUND
                 Log.d(TAG, "Check for low battery ");
-                if(UserInformationSingleton.getInstance().getRobotCharge() <= 20){
+                if(userInformationSingleton.getRobotCharge() <= 20){
 
                     AlertDialog alertDialog = new AlertDialog.Builder(homeActivity)
                         .setTitle("Battery Low")
@@ -163,7 +163,11 @@ public class TimerService extends Service {
                     alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                     alertDialog.show();
                 }
-                handler.postDelayed(this, 3600);
+                else if(userInformationSingleton.getRobotCharge() <= 5) {
+//                    android.hardware.usb.UsbManager.
+                }
+
+                    handler.postDelayed(this, 3600);
             }
         };
         handler.post(run);
