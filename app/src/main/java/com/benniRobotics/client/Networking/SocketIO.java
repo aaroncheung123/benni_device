@@ -18,7 +18,7 @@ import java.net.URISyntaxException;
 public class SocketIO extends AppCompatActivity{
 
 
-    String TAG = "debug_123";
+    String TAG = "socket";
     private String url = UserInformationSingleton.getInstance().getSERVER_URL();
     private String email;
     public static SocketIO instance;
@@ -49,7 +49,11 @@ public class SocketIO extends AppCompatActivity{
             SocketIO.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d(TAG, args[0].toString());
+                    Log.d(TAG, args[0].toString() + "listener");
+//                    String[] parts = args[0].toString().split("-");
+//                    Log.d(TAG, args[0].toString() + "THIS IS THE COMMAND");
+//                    Log.d(TAG, parts[0]);
+//                    Log.d(TAG, parts[1]);
                     processSocketIOCommands(args[0].toString());
                 }
             });
@@ -72,4 +76,6 @@ public class SocketIO extends AppCompatActivity{
     }
 
     public void processSocketIOCommands(String message){ }
+
+    public void updateChargeNumbers(){ }
 }

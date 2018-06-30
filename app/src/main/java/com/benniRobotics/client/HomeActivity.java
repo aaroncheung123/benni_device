@@ -14,6 +14,7 @@ import com.benniRobotics.client.Games.ChatActivity;
 import com.benniRobotics.client.Games.Drive.ManualDriveActivity;
 import com.benniRobotics.client.Games.MathActivity;
 import com.benniRobotics.client.Helper.TimerService;
+import com.benniRobotics.client.Helper.UpdateHomeNumbers;
 import com.benniRobotics.client.Networking.SocketIO;
 import com.benniRobotics.client.Helper.UserInformationSingleton;
 
@@ -30,13 +31,13 @@ public class HomeActivity extends SocketIO {
     private ProgressBar chatProgressBar;
     private ProgressBar mathProgressBar;
     private ProgressBar chargeProgressBar;
+    private Intent updateNumbersIntent;
 
     //Happiness Index
     private TextView happinessIndexTextView;
 
     //Helper
     private UserInformationSingleton userInformationSingleton;
-    private Intent timerServiceIntent;
 
 
     @Override
@@ -46,11 +47,11 @@ public class HomeActivity extends SocketIO {
         userInformationSingleton = UserInformationSingleton.getInstance();
         instance = this;
 
-        //STARTING SERVICE TIMER
-        timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
-        startService(timerServiceIntent);
-
         Log.i(TAG, "Home onCreate");
+
+        //STARTING SERVICE TIMER
+        updateNumbersIntent = new Intent(getApplicationContext(), UpdateHomeNumbers.class);
+        startService(updateNumbersIntent);
 
         //INITIALIZING PROGRESS BARS
         driveProgressBar = findViewById(R.id.driveProgressBar);
@@ -58,6 +59,7 @@ public class HomeActivity extends SocketIO {
         mathProgressBar = findViewById(R.id.mathProgressBar);
         chargeProgressBar = findViewById(R.id.chargeProgressBar);
         happinessIndexTextView = findViewById(R.id.happinessIndex);
+        updateChargeNumber();
     }
 
 
@@ -83,8 +85,11 @@ public class HomeActivity extends SocketIO {
         driveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
         chatProgressBar.setProgress(userInformationSingleton.getChatProgressNumber());
         mathProgressBar.setProgress(userInformationSingleton.getMathProgressNumber());
-        chargeProgressBar.setProgress(userInformationSingleton.getChargeProgressNumber());
         happinessIndexTextView.setText(userInformationSingleton.getHappinessIndexNumber() + "%");
+    }
+
+    public void updateChargeNumber(){
+        chargeProgressBar.setProgress(userInformationSingleton.getRobotHeadCharge());
     }
 
 }

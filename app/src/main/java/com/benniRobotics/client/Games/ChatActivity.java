@@ -18,7 +18,7 @@ import org.json.JSONException;
 
 public class ChatActivity extends SocketIO {
 
-    String TAG = "debug_123";
+    String TAG = "Chat_act";
 
     private TextView chatTextView;
     private ProgressBar chatProgressBar;
@@ -41,7 +41,7 @@ public class ChatActivity extends SocketIO {
 
     @Override
     public void processSocketIOCommands(String command) {
-        Log.d(TAG, "processSocketIOCommands");
+        Log.d(TAG, "processSocketIOCommands" + command);
         if(command.matches("add chatProgress")){
             Integer chatProgress = userInformationSingleton.getChatProgressNumber() + 5;
             Log.d(TAG, "adding "+ chatProgress.toString());
@@ -53,6 +53,22 @@ public class ChatActivity extends SocketIO {
         else if(command.matches("stop listening")){
             listenToggleButton.setChecked(false);
         }
+        else {
+            Log.d(TAG, "processSocketIOCommands");
+            String[] parts = command.split("-");
+            Log.d(TAG, command + "THIS IS THE COMMAND");
+            Log.d(TAG, parts[0]);
+            Log.d(TAG, parts[1]);
+            if (parts[0].matches("headBattery")) {
+                userInformationSingleton.setRobotHeadCharge(Integer.parseInt(parts[1]));
+                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getRobotHeadCharge()));
+            }
+            if (parts[0].matches("bodyBattery")) {
+                userInformationSingleton.setRobotCharge(Integer.parseInt(parts[1]));
+                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
+            }
+        }
+
     }
 
 

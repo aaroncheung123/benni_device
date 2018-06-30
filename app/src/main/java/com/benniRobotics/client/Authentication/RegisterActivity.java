@@ -118,10 +118,10 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonInfoBody.put("email", email);
                 jsonInfoBody.put("password", password);
 
-                jsonProgressNumbersBody.put("drive", 60);
-                jsonProgressNumbersBody.put("chat", 80);
-                jsonProgressNumbersBody.put("math", 70);
-                jsonProgressNumbersBody.put("charge", 90);
+                jsonProgressNumbersBody.put("drive", 100);
+                jsonProgressNumbersBody.put("chat", 100);
+                jsonProgressNumbersBody.put("math", 100);
+                jsonProgressNumbersBody.put("charge", 100);
 
 
                 jsonFinal.put("info", jsonInfoBody);

@@ -14,45 +14,42 @@ import com.benniRobotics.client.R;
 
 public class ChargeActivity extends SocketIO {
 
-    private String TAG = "debug_123";
+    private String TAG = "charge_act";
     private TextView headChargeTextView;
     private TextView bodyChargeTextView;
-
-    private ProgressBar chargeProgressBar;
+    private UserInformationSingleton userInformationSingleton;
+    private HomeActivity homeActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charge);
+        userInformationSingleton = UserInformationSingleton.getInstance();
 
-        chargeProgressBar = findViewById(R.id.chargeProgressBar);
+        homeActivity = HomeActivity.instance;
+        homeActivity.updateChargeNumber();
+
         headChargeTextView = findViewById(R.id.headChargeTextView);
         bodyChargeTextView = findViewById(R.id.bodyChargeTextView);
 
+        updateChargeNumbers();
+
         Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
+
     }
 
     public void chargeToHomeButtonClick(View view) {
         startActivity(new Intent(ChargeActivity.this, HomeActivity.class));
     }
 
-    @Override
-    public void processSocketIOCommands(String command) {
-        Log.d(TAG, "processSocketIOCommands");
-        String[] parts = command.split(" ");
-        if (parts[0].matches("head-battery")) {
-            chargeProgressBar.setProgress(Integer.parseInt(parts[1]));
-            headChargeTextView.setText(Integer.parseInt(parts[1]) + "%");
-            Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
-        }
+    public void updateChargeNumbers(){
+        Log.d(TAG, "update charge numbers");
 
-        if (parts[0].matches("body-battery")) {
-            bodyChargeTextView.setText(Integer.parseInt(parts[1]) + "%");
-            Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
-        }
-
-        if (parts[0].matches("min-low-charge")) {
-            UserInformationSingleton.getInstance().setMinLowCharge(Integer.valueOf(parts[1]));
-        }
+        headChargeTextView.setText(userInformationSingleton.getRobotHeadCharge() + "%");
+        bodyChargeTextView.setText(userInformationSingleton.getRobotCharge() + "%");
     }
+
+
+
+
 }

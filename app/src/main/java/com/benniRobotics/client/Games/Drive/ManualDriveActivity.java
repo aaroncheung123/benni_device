@@ -18,7 +18,7 @@ import org.json.JSONException;
 
 public class ManualDriveActivity extends SocketIO {
 
-    String TAG = "debug_123";
+    String TAG = "manual_drive";
 
     private Button forwardButton;
     private Button backwardButton;

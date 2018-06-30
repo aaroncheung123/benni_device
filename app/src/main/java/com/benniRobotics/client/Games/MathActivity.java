@@ -89,7 +89,7 @@ public class MathActivity extends SocketIO {
             solutionMathEditText.setText("");
 
             problemTextMathTextView.setText("Good Job!");
-            userInformationSingleton.setChargeProgressNumber(userInformationSingleton.getChargeProgressNumber() + 1);
+            userInformationSingleton.setMathProgressNumber(userInformationSingleton.getMathProgressNumber() + 1);
 
             final Handler handler = new Handler();
             Runnable run = new Runnable() {

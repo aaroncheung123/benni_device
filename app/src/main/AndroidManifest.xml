@@ -3,6 +3,7 @@
     package="com.benniRobotics.client">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -24,8 +25,13 @@
         <activity android:name=".Games.ChatActivity" />
         <activity android:name=".Games.MathActivity" />
         <activity android:name=".Games.ChargeActivity" />
-        <activity android:name=".Games.Drive.VoiceDriveActivity"></activity>
-        <service android:name=".Helper.TimerService"></service>
+        <activity android:name=".Games.Drive.VoiceDriveActivity" />
+
+        <service android:name=".Helper.TimerService" />
+        <service
+            android:name=".Helper.UpdateHomeNumbers"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

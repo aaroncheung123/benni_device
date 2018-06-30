@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.benniRobotics.client.Helper.TimerService;
 import com.benniRobotics.client.HomeActivity;
 import com.benniRobotics.client.Networking.HttpRequest;
 import com.benniRobotics.client.R;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailLoginEditText;
     private EditText passwordEditText;
     private String password;
+    private Intent timerServiceIntent;
 
 
 
@@ -79,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(this, "Login Successful",
                             Toast.LENGTH_LONG).show();
 
+                    //STARTING SERVICE TIMER
+                    timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
+                    startService(timerServiceIntent);
+
 
                     //INITIALIZING SINGLETON INFORMATION
                     UserInformationSingleton userInfo = UserInformationSingleton.getInstance();
@@ -86,8 +92,6 @@ public class LoginActivity extends AppCompatActivity {
                     userInfo.setDriveProgressNumber((Integer) jsonObjectProgress.get("drive"));
                     userInfo.setChatProgressNumber((Integer) jsonObjectProgress.get("chat"));
                     userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
-                    userInfo.setChargeProgressNumber((Integer) jsonObjectProgress.get("charge"));
-
 
 
 

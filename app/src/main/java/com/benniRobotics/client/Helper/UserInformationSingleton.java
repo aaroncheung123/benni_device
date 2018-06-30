@@ -10,11 +10,10 @@ public class UserInformationSingleton {
     private Integer driveProgressNumber;
     private Integer chatProgressNumber;
     private Integer mathProgressNumber;
-    private Integer chargeProgressNumber;
+    private Integer chargeProgressNumber = 100;
     private Integer happinessIndexNumber;
     private Integer robotCharge = 100;
     private Integer robotHeadCharge = 100;
-    private Integer minLowCharge = 0;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
     private Boolean setManualDriveActivityCheck = false;
 
@@ -160,12 +159,4 @@ public class UserInformationSingleton {
         this.robotHeadCharge = robotHeadCharge;
     }
 
-
-    public Integer getMinLowCharge() {
-        return minLowCharge;
-    }
-
-    public void setMinLowCharge(Integer minLowCharge) {
-        this.minLowCharge = minLowCharge;
-    }
 }

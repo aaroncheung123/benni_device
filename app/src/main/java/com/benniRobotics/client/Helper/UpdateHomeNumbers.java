@@ -1,29 +1,24 @@
 package com.benniRobotics.client.Helper;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.benniRobotics.client.Games.ChargeActivity;
 import com.benniRobotics.client.Games.Drive.ManualDriveActivity;
 import com.benniRobotics.client.HomeActivity;
 import com.benniRobotics.client.Networking.SocketIO;
 
 import org.json.JSONException;
 
-public class TimerService extends Service {
+import static android.content.ContentValues.TAG;
 
+public class UpdateHomeNumbers extends Service {
     private String TAG = "debug_123";
     private UserInformationSingleton userInformationSingleton;
+
 
     //INSTANCES OF ACTIVITIES
     private SocketIO socketIO;
@@ -50,64 +45,44 @@ public class TimerService extends Service {
     //HELPER
     final private Integer decrementNumber = 1;
 
+    public UpdateHomeNumbers() {
+    }
 
-    //----------------------------------------------
-    //
-    // TIMER SERVICE SET UP
-    //
-    //----------------------------------------------
-
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
-        //INSTANCE
-        socketIO = SocketIO.instance;
-        homeActivity = HomeActivity.instance;
-        chargeActivity = ChargeActivity.instance;
-        manualDriveActivity = ManualDriveActivity.instance;
         userInformationSingleton = UserInformationSingleton.getInstance();
 
-        //BATTERY INIT
-        batteryManager = (BatteryManager)getSystemService(BATTERY_SERVICE);
-        batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
-        //EMOTIONAL STATE
-        emotionalState = "Happy";
-
-        decrementTimer();
-        robotLowBatteryAlert();
-        return super.onStartCommand(intent, flags, startId);
+        // TODO: Return the communication channel to the service.
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
-
-
     //----------------------------------------------
     //
-    // Decrement Timer
+    // Update progress every second
     //
     //----------------------------------------------
-    public void decrementTimer(){
+    public void backgroundTimer(){
         final Handler handler = new Handler();
         Runnable run = new Runnable() {
             @Override
             public void run() {
 
                 //BACKGROUND
-                Log.d(TAG, "Decrement+++: ");
-                decrementProgressNumbers();
+                Log.d(TAG, "Timer+++: ");
+                calculateCharge();
+                setProgressNumbers();
+                setHappinessIndex();
                 try {
                     sendHappinessIndexNumber();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
+                //HOME ACTIVITY
+                homeActivity.updateDisplayNumbers();
                 handler.postDelayed(this, 3600);
+
 
             }
         };
@@ -117,61 +92,59 @@ public class TimerService extends Service {
 
     //----------------------------------------------
     //
-    // Alerts user about low robot battery
+    // send happiness level
     //
     //----------------------------------------------
-    public void robotLowBatteryAlert(){
-        if(userInformationSingleton.getRobotCharge() == -1)
-            userInformationSingleton.setRobotCharge(100);
+    public void sendHappinessLevel(){
         final Handler handler = new Handler();
         Runnable run = new Runnable() {
             @Override
             public void run() {
 
                 //BACKGROUND
-                Log.d(TAG, "Check for low battery ");
-                if(userInformationSingleton.getRobotCharge() <= 20){
-
-                    Context context = getApplicationContext();
-                    CharSequence text = "The Battery for Benni the Robot is low. Please Power Down and Charge";
-                    int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                }
-                else if(userInformationSingleton.getRobotCharge() <= 5) {
-//                    android.hardware.usb.UsbManager.
+                Log.d(TAG, "Send happiness level+++: ");
+                try {
+                    sendHappinessIndexNumber();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                    handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 10000);
+
             }
         };
         handler.post(run);
     }
 
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    //----------------------------------------------
+    //
+    // BATTERY
+    //
+    //----------------------------------------------
+    public void calculateCharge(){
+        int totalCharge = batteryLevel; //average of robot battery and device
+//        userInformationSingleton.setChargeProgressNumber(totalCharge);
     }
 
-
+    //----------------------------------------------
+    //
+    // SET HAPPINESS INDEX
+    //
+    //----------------------------------------------
+    public void setHappinessIndex(){
+        happinessIndexNumber = (driveProgressNumber + chatProgressNumber + mathProgressNumber)/3;
+        userInformationSingleton.setHappinessIndexNumber(happinessIndexNumber);
+    }
 
     //----------------------------------------------
     //
-    // DECREMENT PROGRESS NUMBERS
+    // SET PROGRESS NUMBERS
     //
     //----------------------------------------------
-    public void decrementProgressNumbers(){
-        if(driveProgressNumber > 0) {
-            userInformationSingleton.setDriveProgressNumber(driveProgressNumber - decrementNumber);
-        }
-        if(chatProgressNumber > 0) {
-            userInformationSingleton.setChatProgressNumber(chatProgressNumber - decrementNumber);
-        }
-        if(mathProgressNumber > 0) {
-            userInformationSingleton.setMathProgressNumber(mathProgressNumber - decrementNumber);
-        }
+    public void setProgressNumbers(){
+        driveProgressNumber = userInformationSingleton.getDriveProgressNumber();
+        chatProgressNumber = userInformationSingleton.getChatProgressNumber();
+        mathProgressNumber = userInformationSingleton.getMathProgressNumber();
     }
 
     //----------------------------------------------
@@ -217,6 +190,5 @@ public class TimerService extends Service {
             emotionalStateChange = false;
         }
     }
-
 
 }
