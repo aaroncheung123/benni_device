@@ -19,6 +19,7 @@ public class ChargeActivity extends SocketIO {
     private TextView bodyChargeTextView;
     private UserInformationSingleton userInformationSingleton;
     private HomeActivity homeActivity;
+    private SocketIO chatActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class ChargeActivity extends SocketIO {
 
         homeActivity = HomeActivity.instance;
         homeActivity.updateChargeNumber();
+        chatActivity = ChatActivity.instance;
 
         headChargeTextView = findViewById(R.id.headChargeTextView);
         bodyChargeTextView = findViewById(R.id.bodyChargeTextView);
@@ -48,8 +50,5 @@ public class ChargeActivity extends SocketIO {
         headChargeTextView.setText(userInformationSingleton.getRobotHeadCharge() + "%");
         bodyChargeTextView.setText(userInformationSingleton.getRobotCharge() + "%");
     }
-
-
-
 
 }

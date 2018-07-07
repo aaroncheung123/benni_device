@@ -27,14 +27,14 @@ public class HomeActivity extends SocketIO {
     public static HomeActivity instance;
 
     //Progress Bars
-    private ProgressBar driveProgressBar;
-    private ProgressBar chatProgressBar;
-    private ProgressBar mathProgressBar;
-    private ProgressBar chargeProgressBar;
+    private static ProgressBar driveProgressBar;
+    private static ProgressBar chatProgressBar;
+    private static ProgressBar mathProgressBar;
+    private static ProgressBar chargeProgressBar;
     private Intent updateNumbersIntent;
 
     //Happiness Index
-    private TextView happinessIndexTextView;
+    private static TextView happinessIndexTextView;
 
     //Helper
     private UserInformationSingleton userInformationSingleton;
@@ -49,10 +49,6 @@ public class HomeActivity extends SocketIO {
 
         Log.i(TAG, "Home onCreate");
 
-        //STARTING SERVICE TIMER
-        updateNumbersIntent = new Intent(getApplicationContext(), UpdateHomeNumbers.class);
-        startService(updateNumbersIntent);
-
         //INITIALIZING PROGRESS BARS
         driveProgressBar = findViewById(R.id.driveProgressBar);
         chatProgressBar = findViewById(R.id.chatProgressBar);
@@ -60,6 +56,10 @@ public class HomeActivity extends SocketIO {
         chargeProgressBar = findViewById(R.id.chargeProgressBar);
         happinessIndexTextView = findViewById(R.id.happinessIndex);
         updateChargeNumber();
+
+        //STARTING SERVICE TIMER
+        updateNumbersIntent = new Intent(getApplicationContext(), UpdateHomeNumbers.class);
+        startService(updateNumbersIntent);
     }
 
 
@@ -82,6 +82,7 @@ public class HomeActivity extends SocketIO {
     //
     //----------------------------------------------
     public void updateDisplayNumbers(){
+        userInformationSingleton = UserInformationSingleton.getInstance();
         driveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
         chatProgressBar.setProgress(userInformationSingleton.getChatProgressNumber());
         mathProgressBar.setProgress(userInformationSingleton.getMathProgressNumber());

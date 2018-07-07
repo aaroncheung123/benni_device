@@ -36,45 +36,20 @@ public class ChatActivity extends SocketIO {
         chatProgressBar = findViewById(R.id.chatProgressBar);
         listenToggleButton = findViewById(R.id.listenToggleButton);
 
+        try {
+            attemptSend("start chat");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         initializeManualDriveTimer();
     }
 
-    @Override
-    public void processSocketIOCommands(String command) {
-        Log.d(TAG, "processSocketIOCommands" + command);
-        if(command.matches("add chatProgress")){
-            Integer chatProgress = userInformationSingleton.getChatProgressNumber() + 5;
-            Log.d(TAG, "adding "+ chatProgress.toString());
-            userInformationSingleton.setChatProgressNumber(chatProgress);
-        }
-        else if(command.matches("listening")){
-            listenToggleButton.setChecked(true);
-        }
-        else if(command.matches("stop listening")){
-            listenToggleButton.setChecked(false);
-        }
-        else {
-            Log.d(TAG, "processSocketIOCommands");
-            String[] parts = command.split("-");
-            Log.d(TAG, command + "THIS IS THE COMMAND");
-            Log.d(TAG, parts[0]);
-            Log.d(TAG, parts[1]);
-            if (parts[0].matches("headBattery")) {
-                userInformationSingleton.setRobotHeadCharge(Integer.parseInt(parts[1]));
-                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getRobotHeadCharge()));
-            }
-            if (parts[0].matches("bodyBattery")) {
-                userInformationSingleton.setRobotCharge(Integer.parseInt(parts[1]));
-                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
-            }
-        }
 
-    }
-
-
-    public void chatToHomeButtonClick(View view) throws JSONException {
-        startActivity(new Intent(ChatActivity.this, HomeActivity.class));
-    }
+//    @Override
+//    public void processSocketIOCommands(String command) {
+//
+//    }
 
     public void listenChatButtonClick(View view){
         if(listenToggleButton.isChecked()){
@@ -84,7 +59,18 @@ public class ChatActivity extends SocketIO {
                 e.printStackTrace();
             }
         }
+        else{
+            try {
+                attemptSend("stop listening");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+
+    public void chatToHomeButtonClick(View view) throws JSONException {
+        startActivity(new Intent(ChatActivity.this, HomeActivity.class));
     }
 
 

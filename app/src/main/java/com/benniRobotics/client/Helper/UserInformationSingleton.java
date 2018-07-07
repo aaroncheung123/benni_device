@@ -7,11 +7,11 @@ import static android.content.Context.BATTERY_SERVICE;
 public class UserInformationSingleton {
 
     private String email;
-    private Integer driveProgressNumber;
-    private Integer chatProgressNumber;
-    private Integer mathProgressNumber;
+    private Integer driveProgressNumber = 100;
+    private Integer chatProgressNumber = 100;
+    private Integer mathProgressNumber = 100;
     private Integer chargeProgressNumber = 100;
-    private Integer happinessIndexNumber;
+    private Integer happinessIndexNumber = 100;
     private Integer robotCharge = 100;
     private Integer robotHeadCharge = 100;
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
@@ -24,6 +24,7 @@ public class UserInformationSingleton {
     //
     //----------------------------------------------
     private static UserInformationSingleton instance = null;
+
     private UserInformationSingleton() {
         // Exists only to defeat instantiation.
     }

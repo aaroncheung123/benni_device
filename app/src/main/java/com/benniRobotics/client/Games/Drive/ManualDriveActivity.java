@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.benniRobotics.client.Helper.UpdateHomeNumbers;
+import com.benniRobotics.client.Helper.UpdateVoiceDriveNumbers;
 import com.benniRobotics.client.HomeActivity;
 import com.benniRobotics.client.Networking.SocketIO;
 import com.benniRobotics.client.Helper.UserInformationSingleton;
@@ -27,6 +30,11 @@ public class ManualDriveActivity extends SocketIO {
 
     private ProgressBar manualDriveProgressBar;
     private TextView manualDriveTextView;
+    private ToggleButton listenDriveToggleButton;
+
+    private Intent UpdateVoiceDriveNumbersIntent;
+
+
 
     private Integer totalPoints;
     private UserInformationSingleton userInformationSingleton;
@@ -42,6 +50,9 @@ public class ManualDriveActivity extends SocketIO {
 
         userInformationSingleton = UserInformationSingleton.getInstance();
         totalPoints = 0;
+
+        listenDriveToggleButton = findViewById(R.id.listenDriveToggleButton);
+
 
         forwardButton = findViewById(R.id.forwardButton);
         backwardButton = findViewById(R.id.backwardButton);
@@ -60,6 +71,16 @@ public class ManualDriveActivity extends SocketIO {
         initializeRightButton();
         updateManualDriveNumbers();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        try {
+            attemptSend("stop drive");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 
 
@@ -239,6 +260,24 @@ public class ManualDriveActivity extends SocketIO {
                 return true;
             }
         });
+    }
+
+
+    public void listenDriveButtonClick(View view){
+        if(listenDriveToggleButton.isChecked()){
+            try {
+                attemptSend("start drive listening");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            try {
+                attemptSend("stop drive listening");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

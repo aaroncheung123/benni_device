@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.benniRobotics.client.Games.ChatActivity;
 import com.benniRobotics.client.Helper.UserInformationSingleton;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -15,17 +16,19 @@ import org.json.JSONException;
 
 import java.net.URISyntaxException;
 
-public class SocketIO extends AppCompatActivity{
+public abstract class SocketIO extends AppCompatActivity{
 
 
     String TAG = "socket";
     private String url = UserInformationSingleton.getInstance().getSERVER_URL();
+    private UserInformationSingleton userInformationSingleton;
     private String email;
     public static SocketIO instance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userInformationSingleton = UserInformationSingleton.getInstance();
 
         instance = this;
         email = UserInformationSingleton.getInstance().getEmail();
@@ -75,7 +78,25 @@ public class SocketIO extends AppCompatActivity{
         socket.disconnect();
     }
 
-    public void processSocketIOCommands(String message){ }
+    public void processSocketIOCommands(String command){
+        Log.d(TAG, "processSocketIOCommands");
+        if(command.matches("stop drive listening")){
+
+        }
+        String[] parts = command.split("-");
+        Log.d(TAG, parts[0]);
+        if(parts.length > 1) {
+            Log.d(TAG, parts[1]);
+            if (parts[0].matches("headBattery")) {
+                userInformationSingleton.setRobotHeadCharge(Integer.parseInt(parts[1]));
+                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getRobotHeadCharge()));
+            }
+            if (parts[0].matches("bodyBattery")) {
+                userInformationSingleton.setRobotCharge(Integer.parseInt(parts[1]));
+                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
+            }
+        }
+    }
 
     public void updateChargeNumbers(){ }
 }

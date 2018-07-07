@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            httpRequest.sendPostRequest(jsonFinal);
+            httpRequest.sendPostRequest("authentication",jsonFinal);
 
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {

@@ -81,10 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(this, "Login Successful",
                             Toast.LENGTH_LONG).show();
 
-                    //STARTING SERVICE TIMER
-                    timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
-                    startService(timerServiceIntent);
-
 
                     //INITIALIZING SINGLETON INFORMATION
                     UserInformationSingleton userInfo = UserInformationSingleton.getInstance();
@@ -93,6 +89,9 @@ public class LoginActivity extends AppCompatActivity {
                     userInfo.setChatProgressNumber((Integer) jsonObjectProgress.get("chat"));
                     userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
 
+                    //STARTING SERVICE TIMER
+                    timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);
+                    startService(timerServiceIntent);
 
 
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));

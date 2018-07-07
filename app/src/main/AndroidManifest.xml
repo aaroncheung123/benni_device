@@ -31,6 +31,10 @@
         <service
             android:name=".Helper.UpdateHomeNumbers"
             android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".Helper.UpdateVoiceDriveNumbers"
+            android:enabled="true"
             android:exported="true"></service>
     </application>
 

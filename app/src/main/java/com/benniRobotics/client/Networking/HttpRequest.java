@@ -62,9 +62,9 @@ public class HttpRequest {
         requestQueue.add(objectRequest);
     }
 
-    public void sendPostRequest(JSONObject jsonBodyPost){
+    public void sendPostRequest(String apiURL, JSONObject jsonBodyPost){
         Log.d(TAG, "postRequest");
-        String url = SERVER_URL + "api/authentication";
+        String url = SERVER_URL + "api/" + apiURL + "/" + UserInformationSingleton.getInstance().getEmail();
         JsonObjectRequest postReq = new JsonObjectRequest(Request.Method.POST,
                 url, jsonBodyPost,
                 new Response.Listener<JSONObject>() {
