@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.benniRobotics.client.Helper.UserInformationSingleton;
 import com.benniRobotics.client.Networking.HttpRequest;
 import com.benniRobotics.client.R;
 
@@ -127,12 +128,11 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonFinal.put("info", jsonInfoBody);
                 jsonFinal.put("progressNumbers", jsonProgressNumbersBody);
 
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            httpRequest.sendPostRequest("authentication",jsonFinal);
+            httpRequest.sendPostRequest(jsonFinal);
 
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
