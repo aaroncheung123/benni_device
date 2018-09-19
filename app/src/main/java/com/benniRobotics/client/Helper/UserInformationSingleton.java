@@ -12,8 +12,12 @@ public class UserInformationSingleton {
     private Integer mathProgressNumber = 100;
     private Integer chargeProgressNumber = 100;
     private Integer happinessIndexNumber = 100;
+    private Integer loveIndexNumber = 100;
     private Integer robotCharge = 100;
     private Integer robotHeadCharge = 100;
+    private String currentID = "";
+    private String lastResponse = "";
+    private String currentEmotionalState = "Happy";
     private String SERVER_URL = "https://guarded-savannah-87082.herokuapp.com/";
     private Boolean setManualDriveActivityCheck = false;
 
@@ -75,18 +79,51 @@ public class UserInformationSingleton {
     public void setChatProgressNumber(int number){
         if(number >= 100){
             chatProgressNumber = 100;
+            loveIndexNumber = 100;
         }
         else if(number <= 0){
             chatProgressNumber = 0;
+            loveIndexNumber = 0;
         }
         else{
             chatProgressNumber = number;
+            loveIndexNumber = number;
         }
     }
     public Integer getChatProgressNumber(){
         return chatProgressNumber;
     }
 
+    public Integer getLoveIndexNumber() {
+        return loveIndexNumber;
+    }
+
+    public void setLoveIndexNumber(Integer loveIndexNumber) {
+        if(loveIndexNumber >= 100){
+            this.loveIndexNumber = 100;
+        }
+        else if(loveIndexNumber <= 0){
+            this.loveIndexNumber = 0;
+        }
+        else{
+            this.loveIndexNumber = loveIndexNumber;
+        }
+    }
+
+    public void setHappinessIndexNumber(int number){
+        if(number >= 100){
+            this.happinessIndexNumber = 100;
+        }
+        else if(loveIndexNumber <= 0){
+            this.happinessIndexNumber = 0;
+        }
+        else{
+            this.happinessIndexNumber = number;
+        }
+    }
+    public int getHappinessIndexNumber(){
+        return happinessIndexNumber;
+    }
 
     public void setMathProgressNumber(int number){
         if(number >= 100){
@@ -136,13 +173,6 @@ public class UserInformationSingleton {
     // SINGLETON SET UP
     //
     //----------------------------------------------
-    public void setHappinessIndexNumber(int number){
-        happinessIndexNumber = number;
-    }
-    public int getHappinessIndexNumber(){
-        return happinessIndexNumber;
-    }
-
 
     public Integer getRobotCharge() {
         return robotCharge;
@@ -160,4 +190,27 @@ public class UserInformationSingleton {
         this.robotHeadCharge = robotHeadCharge;
     }
 
+    public String getCurrentEmotionalState() {
+        return currentEmotionalState;
+    }
+
+    public void setCurrentEmotionalState(String currentEmotionalState) {
+        this.currentEmotionalState = currentEmotionalState;
+    }
+
+    public String getLastResponse() {
+        return lastResponse;
+    }
+
+    public void setLastResponse(String lastResponse) {
+        this.lastResponse = lastResponse;
+    }
+
+    public String getCurrentID() {
+        return currentID;
+    }
+
+    public void setCurrentID(String currentID) {
+        this.currentID = currentID;
+    }
 }

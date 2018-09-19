@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.benniRobotics.client.Games.Drive.ManualDriveActivity;
 import com.benniRobotics.client.Helper.UserInformationSingleton;
 import com.benniRobotics.client.HomeActivity;
 import com.benniRobotics.client.Networking.SocketIO;
@@ -17,8 +16,6 @@ import com.benniRobotics.client.R;
 
 import org.json.JSONException;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class MathActivity extends SocketIO {
@@ -51,8 +48,8 @@ public class MathActivity extends SocketIO {
 
         updateMathGameNumbers();
 
-        mathProgressBar = findViewById(R.id.mathProgressBar);
-        mathTextView = findViewById(R.id.mathTextView);
+        mathProgressBar = findViewById(R.id.speakProgressBar);
+        mathTextView = findViewById(R.id.speakTextView);
 
         userInformationSingleton = UserInformationSingleton.getInstance();
 
@@ -66,7 +63,7 @@ public class MathActivity extends SocketIO {
         problemoperatorMathTextView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         problemTwoMathTextView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 
-        solutionMathEditText = findViewById(R.id.solutionMathEditText);
+        solutionMathEditText = findViewById(R.id.sentanceToSay);
 
 
         //He says ""Hi, can you help me with my math homework"

@@ -2,6 +2,8 @@ package com.benniRobotics.client.Games.Drive;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -18,6 +20,8 @@ import com.benniRobotics.client.Networking.SocketIO;
 import com.benniRobotics.client.Helper.UserInformationSingleton;
 import com.benniRobotics.client.R;
 import org.json.JSONException;
+
+import io.github.controlwear.virtual.joystick.android.JoystickView;
 
 public class ManualDriveActivity extends SocketIO {
 
@@ -48,15 +52,20 @@ public class ManualDriveActivity extends SocketIO {
         setContentView(R.layout.activity_manual_drive);
         instance = this;
 
+        //INITIALIZING THE ACTION BAR
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#DAEDFE")));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.benni_robotics_logo);
+
         userInformationSingleton = UserInformationSingleton.getInstance();
         totalPoints = 0;
 
         listenDriveToggleButton = findViewById(R.id.listenDriveToggleButton);
 
 
-        forwardButton = findViewById(R.id.forwardButton);
+        //forwardButton = findViewById(R.id.forwardButton);
         backwardButton = findViewById(R.id.backwardButton);
-        leftButton = findViewById(R.id.leftButton);
+        //leftButton = findViewById(R.id.leftButton);
         rightButton = findViewById(R.id.rightButton);
 
         manualDriveProgressBar = findViewById(R.id.manualDriveProgressBar);
@@ -65,11 +74,13 @@ public class ManualDriveActivity extends SocketIO {
         manualDriveProgressBar.setProgress(userInformationSingleton.getDriveProgressNumber());
         manualDriveTextView.setText(userInformationSingleton.getDriveProgressNumber().toString() + "%");
 
-        initializeForwardButton();
-        initializeBackwardButton();
-        initializeLeftButton();
-        initializeRightButton();
+
+//        initializeForwardButton();
+//        initializeBackwardButton();
+//        initializeLeftButton();
+//        initializeRightButton();
         updateManualDriveNumbers();
+        createJoyStick();
 
     }
 
@@ -103,6 +114,64 @@ public class ManualDriveActivity extends SocketIO {
 
     }
 
+    public void createJoyStick(){
+        JoystickView joystick = (JoystickView) findViewById(R.id.joystick);
+        joystick.setOnMoveListener(new JoystickView.OnMoveListener() {
+            @Override
+            public void onMove(int angle, int strength) {
+
+                if(strength > 25){
+                    if(angle > 45 && angle < 135){
+                        try {
+                            calculateTotalPoints();
+                            attemptSend("forward");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }                    }
+                    else if(angle < 45 || angle > 315){
+                        try {
+                            calculateTotalPoints();
+                            attemptSend("left");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if(angle > 135 && angle < 225){
+                        try {
+                            calculateTotalPoints();
+                            attemptSend("right");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if(angle > 225 && angle < 315){
+                        try {
+                            calculateTotalPoints();
+                            attemptSend("backward");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else{
+                        try {
+                            attemptSend("stop");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else {
+                    try {
+                        attemptSend("stop");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+    }
+
     //--------------------------------------------------
     //
     // Calculating the increase in points for this game
@@ -113,7 +182,7 @@ public class ManualDriveActivity extends SocketIO {
         Integer driveNumber = userInformationSingleton.getDriveProgressNumber();
         //Log.d(TAG, userInformationSingleton.getDriveProgressNumber().toString());
         totalPoints += 1;
-        if(totalPoints == 3){
+        if(totalPoints == 1){
             driveNumber += 1;
             userInformationSingleton.setDriveProgressNumber(driveNumber);
             manualDriveProgressBar.setProgress(driveNumber);
@@ -131,136 +200,136 @@ public class ManualDriveActivity extends SocketIO {
     public void driveToHomeButtonClick(View view){
         startActivity(new Intent(ManualDriveActivity.this, HomeActivity.class));
     }
-//    public void voiceDriveButtonClick(View view){
-//        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
+    public void voiceDriveButtonClick(View view){
+        startActivity(new Intent(ManualDriveActivity.this, VoiceDriveActivity.class));
+    }
+
+
+//    //--------------------------------------------------
+//    //
+//    // Move Forward
+//    //
+//    //--------------------------------------------------
+//    @SuppressLint("ClickableViewAccessibility")
+//    public void initializeForwardButton(){
+//        forwardButton.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                // Pressed
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) try {
+//                    calculateTotalPoints();
+//                    attemptSend("forward");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    // Released
+//                    try {
+//                        attemptSend("stop");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                return true;
+//            }
+//        });
 //    }
-
-
-    //--------------------------------------------------
-    //
-    // Move Forward
-    //
-    //--------------------------------------------------
-    @SuppressLint("ClickableViewAccessibility")
-    public void initializeForwardButton(){
-        forwardButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Pressed
-                if (event.getAction() == MotionEvent.ACTION_DOWN) try {
-                    calculateTotalPoints();
-                    attemptSend("forward");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    // Released
-                    try {
-                        attemptSend("stop");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            }
-        });
-    }
-
-
-    //--------------------------------------------------
-    //
-    // Move Backward
-    //
-    //--------------------------------------------------
-    @SuppressLint("ClickableViewAccessibility")
-    public void initializeBackwardButton(){
-        backwardButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Pressed
-                    try {
-                        calculateTotalPoints();
-                        attemptSend("backward");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    // Released
-                    try {
-                        attemptSend("stop");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            }
-        });
-    }
-
-
-    //--------------------------------------------------
-    //
-    // Move Left
-    //
-    //--------------------------------------------------
-    @SuppressLint("ClickableViewAccessibility")
-    public void initializeLeftButton(){
-        leftButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Pressed
-                    try {
-                        calculateTotalPoints();
-                        attemptSend("left");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    // Released
-                    try {
-                        attemptSend("stop");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            }
-        });
-    }
-
-
-    //--------------------------------------------------
-    //
-    // Move Right
-    //
-    //--------------------------------------------------
-    @SuppressLint("ClickableViewAccessibility")
-    public void initializeRightButton(){
-        rightButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    // Pressed
-                    try {
-                        calculateTotalPoints();
-                        attemptSend("right");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    // Released
-                    try {
-                        attemptSend("stop");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            }
-        });
-    }
+//
+//
+//    //--------------------------------------------------
+//
+//    // Move Backward
+//
+//    //--------------------------------------------------
+//    @SuppressLint("ClickableViewAccessibility")
+//    public void initializeBackwardButton(){
+//        backwardButton.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    // Pressed
+//                    try {
+//                        calculateTotalPoints();
+//                        attemptSend("backward");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    // Released
+//                    try {
+//                        attemptSend("stop");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//    }
+//
+//
+////    --------------------------------------------------
+////
+////     Move Left
+////
+////    --------------------------------------------------
+//    @SuppressLint("ClickableViewAccessibility")
+//    public void initializeLeftButton(){
+//        leftButton.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    // Pressed
+//                    try {
+//                        calculateTotalPoints();
+//                        attemptSend("left");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    // Released
+//                    try {
+//                        attemptSend("stop");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//    }
+//
+//
+////    --------------------------------------------------
+////
+////     Move Right
+////
+////    --------------------------------------------------
+//    @SuppressLint("ClickableViewAccessibility")
+//    public void initializeRightButton(){
+//        rightButton.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    // Pressed
+//                    try {
+//                        calculateTotalPoints();
+//                        attemptSend("right");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    // Released
+//                    try {
+//                        attemptSend("stop");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                return true;
+//            }
+//        });
+//    }
 
 
     public void listenDriveButtonClick(View view){
@@ -281,4 +350,7 @@ public class ManualDriveActivity extends SocketIO {
     }
 
 
+    public void switchClick1(View view) {
+        startActivity(new Intent(ManualDriveActivity.this, JoystickDriveActivity.class));
+    }
 }

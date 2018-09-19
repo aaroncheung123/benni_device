@@ -8,111 +8,210 @@
 
     <Button
         android:id="@+id/driveButton"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="272dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="96dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="416dp"
         android:onClick="driveButtonClick"
-        android:text="Drive"
+        android:text="Play"
+        android:textColor="@color/colorFun2"
+        android:theme="@style/driveButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/chatButton"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="60dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="97dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="276dp"
         android:onClick="chatButtonClick"
-        android:text="Chat"
+        android:text="Talk"
+        android:textColor="@color/colorFun2"
+        android:theme="@style/chatButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/driveButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/mathButton"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="60dp"
-        android:onClick="mathButtonClick"
-        android:text="Game"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chatButton" />
+    <!--<Button-->
+        <!--android:id="@+id/mathButton"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="28dp"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:onClick="mathButtonClick"-->
+        <!--android:text="Game"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/chatButton" />-->
 
-    <Button
-        android:id="@+id/chargeButton"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="60dp"
-        android:onClick="chargeButtonClick"
-        android:text="Charge"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mathButton" />
+    <!--<Button-->
+        <!--android:id="@+id/chargeButton"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="28dp"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:onClick="chargeButtonClick"-->
+        <!--android:text="Charge"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/mathButton" />-->
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="502dp"
-        android:layout_height="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/nelli_home" />
+    <!--<ProgressBar-->
+        <!--android:id="@+id/chargeProgressBar"-->
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+        <!--android:layout_width="186dp"-->
+        <!--android:layout_height="11dp"-->
+        <!--android:layout_marginEnd="32dp"-->
+        <!--android:layout_marginTop="45dp"-->
+        <!--android:progress="100"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/mathProgressBar" />-->
 
-    <ProgressBar
-        android:id="@+id/chargeProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="186dp"
-        android:layout_height="11dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="45dp"
-        android:progress="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mathProgressBar" />
-
-    <ProgressBar
-        android:id="@+id/mathProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="186dp"
-        android:layout_height="12dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="45dp"
-        android:progress="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chatProgressBar" />
+    <!--<ProgressBar-->
+        <!--android:id="@+id/mathProgressBar"-->
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+        <!--android:layout_width="186dp"-->
+        <!--android:layout_height="12dp"-->
+        <!--android:layout_marginEnd="32dp"-->
+        <!--android:layout_marginTop="45dp"-->
+        <!--android:progress="100"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/chatProgressBar" />-->
 
     <ProgressBar
         android:id="@+id/chatProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="186dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="45dp"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="124dp"
+        android:layout_height="141dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="224dp"
         android:progress="100"
+        android:theme="@style/Pro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/driveProgressBar" />
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/driveProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="186dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="292dp"
+        android:layout_width="125dp"
+        android:layout_height="159dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="356dp"
         android:progress="100"
+        android:theme="@style/ProgressBarST"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/happinessIndex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="88dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="408dp"
         android:text="100"
-        android:textSize="46sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loveIndex2"
+        android:layout_width="88dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="268dp"
+        android:text="100"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/emotion1"
+        android:layout_width="89dp"
+        android:layout_height="53dp"
+        android:adjustViewBounds="true"
+        android:background="#DAEDFE"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/boredface" />
+
+    <ImageView
+        android:id="@+id/emotion2"
+        android:layout_width="89dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="156dp"
+        android:adjustViewBounds="true"
+        android:background="#DAEDFE"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/broken" />
+
+    <ImageView
+        android:id="@+id/emotion3"
+        android:layout_width="89dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="104dp"
+        android:adjustViewBounds="true"
+        android:background="#DAEDFE"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mad" />
+
+    <ImageView
+        android:id="@+id/emotion4"
+        android:layout_width="89dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="52dp"
+        android:adjustViewBounds="true"
+        android:background="#DAEDFE"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sadface" />
+
+    <ImageView
+        android:id="@+id/emotionBig"
+        android:layout_width="286dp"
+        android:layout_height="211dp"
+        android:layout_marginStart="8dp"
+        android:adjustViewBounds="true"
+        android:background="#DAEDFE"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/h1" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="103dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="236dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/heart_vital" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="95dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="380dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/power" />
 
 </android.support.constraint.ConstraintLayout>

@@ -17,14 +17,14 @@
         android:textAlignment="center"
         android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/mathTextView"
+        app:layout_constraintBottom_toTopOf="@+id/speakTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/mathProgressBar"
+        android:id="@+id/speakProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
         android:layout_height="27dp"
@@ -32,17 +32,17 @@
         android:progress="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mathTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/speakTextView" />
 
     <TextView
-        android:id="@+id/mathTextView"
+        android:id="@+id/speakTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
         android:layout_marginTop="27dp"
         android:text="100%"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/mathProgressBar"
+        app:layout_constraintBottom_toTopOf="@+id/speakProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         android:layout_marginStart="62dp"
         android:layout_marginTop="300dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toTopOf="@+id/solutionMathEditText"
+        app:layout_constraintBottom_toTopOf="@+id/sentanceToSay"
         app:layout_constraintEnd_toStartOf="@+id/problemOperatorMathTextView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/solutionMathEditText"
+        android:id="@+id/sentanceToSay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
@@ -81,7 +81,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/submitMathButton"
+        android:id="@+id/submitSpeakButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/problemTextMathTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solutionMathEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/sentanceToSay" />
 
     <TextView
         android:id="@+id/problemOperatorMathTextView"
@@ -104,7 +104,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="290dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toTopOf="@+id/solutionMathEditText"
+        app:layout_constraintBottom_toTopOf="@+id/sentanceToSay"
         app:layout_constraintEnd_toStartOf="@+id/problemTwoMathTextView"
         app:layout_constraintStart_toEndOf="@+id/problemOneMathTextView"
         app:layout_constraintTop_toTopOf="parent"
@@ -119,7 +119,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="290dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toTopOf="@+id/solutionMathEditText"
+        app:layout_constraintBottom_toTopOf="@+id/sentanceToSay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/problemOperatorMathTextView"
         app:layout_constraintTop_toTopOf="parent"
@@ -135,7 +135,7 @@
         android:layout_marginTop="24dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toTopOf="@+id/problemMathReturnHomeTextView"
-        app:layout_constraintEnd_toStartOf="@+id/solutionMathEditText"
+        app:layout_constraintEnd_toStartOf="@+id/sentanceToSay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/problemOneMathTextView" />
 
@@ -151,7 +151,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mathProgressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/speakProgressBar" />
 
     <TextView
         android:id="@+id/problemTextMathTextView"
@@ -164,8 +164,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/submitMathButton"
-        app:layout_constraintTop_toBottomOf="@+id/solutionMathEditText" />
+        app:layout_constraintStart_toEndOf="@+id/submitSpeakButton"
+        app:layout_constraintTop_toBottomOf="@+id/sentanceToSay" />
 
     <Button
         android:id="@+id/problemMathReturnHomeTextView"
@@ -177,7 +177,7 @@
         android:onClick="returnHomeOnClickButton"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/submitMathButton"
+        app:layout_constraintEnd_toStartOf="@+id/submitSpeakButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/problemEqualsMathTextView" />
 

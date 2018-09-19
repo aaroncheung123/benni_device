@@ -1,6 +1,8 @@
 package com.benniRobotics.client.Authentication;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //INITIALIZING THE ACTION BAR
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#DAEDFE")));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.benni_robotics_logo);
 
         firstNameRegisterEditText = findViewById(R.id.firstNameRegisterEditText);
         lastNameRegisterEditText = findViewById(R.id.lastNameRegisterEditText);
@@ -119,11 +126,8 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonInfoBody.put("email", email);
                 jsonInfoBody.put("password", password);
 
-                jsonProgressNumbersBody.put("drive", 100);
-                jsonProgressNumbersBody.put("chat", 100);
-                jsonProgressNumbersBody.put("math", 100);
-                jsonProgressNumbersBody.put("charge", 100);
-
+                jsonProgressNumbersBody.put("loved", 100);
+                jsonProgressNumbersBody.put("happy", 100);
 
                 jsonFinal.put("info", jsonInfoBody);
                 jsonFinal.put("progressNumbers", jsonProgressNumbersBody);

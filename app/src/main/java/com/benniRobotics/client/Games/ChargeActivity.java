@@ -1,6 +1,8 @@
 package com.benniRobotics.client.Games;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,12 @@ public class ChargeActivity extends SocketIO {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charge);
+
+        //INITIALIZING THE ACTION BAR
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#DAEDFE")));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.benni_robotics_logo);
+
         userInformationSingleton = UserInformationSingleton.getInstance();
 
         homeActivity = HomeActivity.instance;
@@ -46,7 +54,6 @@ public class ChargeActivity extends SocketIO {
 
     public void updateChargeNumbers(){
         Log.d(TAG, "update charge numbers");
-
         headChargeTextView.setText(userInformationSingleton.getRobotHeadCharge() + "%");
         bodyChargeTextView.setText(userInformationSingleton.getRobotCharge() + "%");
     }

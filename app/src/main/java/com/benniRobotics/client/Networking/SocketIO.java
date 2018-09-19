@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.benniRobotics.client.Games.ChatActivity;
 import com.benniRobotics.client.Helper.UserInformationSingleton;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -52,7 +51,7 @@ public abstract class SocketIO extends AppCompatActivity{
             SocketIO.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d(TAG, args[0].toString() + "listener");
+                    //Log.d(TAG, args[0].toString() + "listener");
 //                    String[] parts = args[0].toString().split("-");
 //                    Log.d(TAG, args[0].toString() + "THIS IS THE COMMAND");
 //                    Log.d(TAG, parts[0]);
@@ -68,7 +67,7 @@ public abstract class SocketIO extends AppCompatActivity{
             return;
         }
         String finalMessage = email + ":" + message;
-        Log.d(TAG, finalMessage);
+        //Log.d(TAG, finalMessage);
         socket.emit("message", finalMessage);
     }
 
@@ -79,23 +78,26 @@ public abstract class SocketIO extends AppCompatActivity{
     }
 
     public void processSocketIOCommands(String command){
-        Log.d(TAG, "processSocketIOCommands");
+        //Log.d(TAG, "processSocketIOCommands");
         if(command.matches("stop drive listening")){
 
         }
         String[] parts = command.split("-");
-        Log.d(TAG, parts[0]);
-        if(parts.length > 1) {
-            Log.d(TAG, parts[1]);
-            if (parts[0].matches("headBattery")) {
-                userInformationSingleton.setRobotHeadCharge(Integer.parseInt(parts[1]));
-                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getRobotHeadCharge()));
-            }
-            if (parts[0].matches("bodyBattery")) {
-                userInformationSingleton.setRobotCharge(Integer.parseInt(parts[1]));
-                Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
-            }
-        }
+        //Log.d(TAG, parts[0]);
+//        if(parts.length > 1) {
+//            //Log.d(TAG, parts[1]);
+//            if (parts[0].matches("headBattery")) {
+//                userInformationSingleton.setRobotHeadCharge(Integer.parseInt(parts[1]));
+//                //Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getRobotHeadCharge()));
+//            }
+//            if (parts[0].matches("bodyBattery")) {
+//                userInformationSingleton.setRobotCharge(Integer.parseInt(parts[1]));
+//                //Log.d(TAG, String.valueOf(UserInformationSingleton.getInstance().getChargeProgressNumber()));
+//            }
+//        }
+        //else{
+            userInformationSingleton.setLastResponse(command);
+        //}
     }
 
     public void updateChargeNumbers(){ }

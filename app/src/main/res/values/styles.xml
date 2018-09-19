@@ -7,5 +7,21 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="Pro" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/colorFun</item>
+    </style>
 
+    <style name="ProgressBarST">
+        <item name="colorAccent">@color/colorCharge</item>
+    </style>
+
+    <style name="driveButton" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/colorCharge</item>
+    </style>
+    <style name="chatButton" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/colorFun</item>
+    </style>
+    <style name="loginButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorAccent">@color/colorFun</item>
+    </style>
 </resources>

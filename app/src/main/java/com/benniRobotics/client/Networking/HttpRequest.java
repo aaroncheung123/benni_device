@@ -93,6 +93,37 @@ public class HttpRequest {
         requestQueue.add(postReq);
     }
 
+//    public void sendUpdatePostRequest(JSONObject jsonBodyPost){
+//        Log.d(TAG, "postRequest");
+//        String url = SERVER_URL + "api/authentication/data";
+//        JsonObjectRequest postReq = new JsonObjectRequest(Request.Method.POST,
+//                url, jsonBodyPost,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        Log.d(TAG, response.toString());
+//                        Log.d(TAG, "POST Success");
+//                        try {
+//                            Log.d(TAG, response.get("status").toString());
+//                            setResponse(response.get("status").toString());
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                        //Success Callback
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d(TAG, error.toString());
+//                        Log.d(TAG, "POST Error");
+//                        setResponse("0");
+//                        //Failure Callback
+//                    }
+//                });
+//        requestQueue.add(postReq);
+//    }
+
     public void setResponse(String response){
         if(response.matches("0")){
             finalResponse = "0";

@@ -1,6 +1,8 @@
 package com.benniRobotics.client.Authentication;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //INITIALIZING THE ACTION BAR
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#DAEDFE")));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.benni_robotics_logo);
 
         emailLoginEditText = findViewById(R.id.emailLoginEditText);
         passwordEditText = findViewById(R.id.passwordLoginEditText);
@@ -85,9 +92,9 @@ public class LoginActivity extends AppCompatActivity {
                     //INITIALIZING SINGLETON INFORMATION
                     UserInformationSingleton userInfo = UserInformationSingleton.getInstance();
                     userInfo.setEmail(jsonObjectInfo.get("email").toString());
-                    userInfo.setDriveProgressNumber((Integer) jsonObjectProgress.get("drive"));
-                    userInfo.setChatProgressNumber((Integer) jsonObjectProgress.get("chat"));
-                    userInfo.setMathProgressNumber((Integer) jsonObjectProgress.get("math"));
+                    userInfo.setLoveIndexNumber((Integer) jsonObjectProgress.get("loved"));
+                    userInfo.setHappinessIndexNumber((Integer) jsonObjectProgress.get("happy"));
+                    userInfo.setCurrentID(jsonObject.get("_id").toString());
 
                     //STARTING SERVICE TIMER
                     timerServiceIntent = new Intent(getApplicationContext(), TimerService.class);

@@ -152,7 +152,7 @@ public class UpdateHomeNumbers extends Service {
     //
     //----------------------------------------------
     public void setHappinessIndex(){
-        happinessIndexNumber = (driveProgressNumber + chatProgressNumber + mathProgressNumber)/3;
+        happinessIndexNumber = (driveProgressNumber);
         userInformationSingleton.setHappinessIndexNumber(happinessIndexNumber);
     }
 
@@ -233,9 +233,10 @@ public class UpdateHomeNumbers extends Service {
 
         if(emotionalStateChange){
             Log.d(TAG, "SENDING!!!!!: " + emotionalState);
-            socketIO.attemptSend(emotionalState.toString());
+            socketIO.attemptSend(emotionalState);
             emotionalStateChange = false;
+            userInformationSingleton.setCurrentEmotionalState(emotionalState);
         }
     }
-
 }
+

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Games.Drive.ManualDriveActivity">
+    tools:context=".Games.Drive.JoystickDriveActivity">
 
     <ToggleButton
         android:id="@+id/listenDriveToggleButton"
@@ -18,7 +18,7 @@
         android:text="ToggleButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/backwardButton"
         app:layout_constraintTop_toBottomOf="@+id/rightButton"
         app:layout_constraintVertical_bias="1.0" />
@@ -38,51 +38,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<Button-->
-        <!--android:id="@+id/forwardButton"-->
-        <!--android:layout_width="97dp"-->
-        <!--android:layout_height="43dp"-->
-        <!--android:layout_marginTop="216dp"-->
-        <!--android:onClick="forwardButtonClick"-->
-        <!--android:text="Forward"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.236"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <Button
+        android:id="@+id/forwardButton"
+        android:layout_width="117dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="168dp"
+        android:onClick="forwardButtonClick"
+        android:text="Forward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<Button-->
-        <!--android:id="@+id/rightButton"-->
-        <!--android:layout_width="91dp"-->
-        <!--android:layout_height="42dp"-->
-        <!--android:layout_marginEnd="176dp"-->
-        <!--android:layout_marginTop="56dp"-->
-        <!--android:onClick="rightButtonClick"-->
-        <!--android:text="Right"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/forwardButton" />-->
+    <Button
+        android:id="@+id/rightButton"
+        android:layout_width="125dp"
+        android:layout_height="98dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="80dp"
+        android:onClick="rightButtonClick"
+        android:text="Right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forwardButton" />
 
-    <!--<Button-->
-        <!--android:id="@+id/backwardButton"-->
-        <!--android:layout_width="102dp"-->
-        <!--android:layout_height="44dp"-->
-        <!--android:layout_marginTop="76dp"-->
-        <!--android:onClick="backwardButtonClick"-->
-        <!--android:text="Backward"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.241"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/forwardButton" />-->
+    <Button
+        android:id="@+id/backwardButton"
+        android:layout_width="116dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="80dp"
+        android:onClick="backwardButtonClick"
+        android:text="Backward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forwardButton" />
 
-    <!--<Button-->
-        <!--android:id="@+id/leftButton"-->
-        <!--android:layout_width="99dp"-->
-        <!--android:layout_height="46dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:layout_marginTop="56dp"-->
-        <!--android:onClick="leftButtonClick"-->
-        <!--android:text="left"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/forwardButton" />-->
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="122dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:onClick="leftButtonClick"
+        android:text="left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forwardButton" />
 
     <Button
         android:id="@+id/driveToHomeButton"
@@ -129,31 +128,16 @@
         app:layout_constraintTop_toBottomOf="@+id/rightButton"
         app:layout_constraintVertical_bias="1.0" />
 
-    <io.github.controlwear.virtual.joystick.android.JoystickView xmlns:custom="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/joystick"
-        android:layout_width="360dp"
-        android:layout_height="340dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="116dp"
-        custom:JV_backgroundColor="@color/mainColor"
-        custom:JV_borderColor="@color/colorCharge"
-        custom:JV_borderWidth="4dp"
-        custom:JV_buttonColor="@color/colorFun2"
-        custom:layout_constraintEnd_toEndOf="parent"
-        custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/switchButton1"
+        android:id="@+id/switch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="switchClick1"
-        android:text="Switch "
+        android:onClick="switchClick2"
+        android:text="Switch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -161,19 +145,19 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/switchButtonTextView"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Buttons"
+        android:text="Joystick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
+        app:layout_constraintVertical_bias="0.903" />
+
 
 </android.support.constraint.ConstraintLayout>

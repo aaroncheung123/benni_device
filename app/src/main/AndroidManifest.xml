@@ -20,10 +20,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".Authentication.RegisterActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"
+            android:icon="@drawable/benni_robotics_logo"
+            android:label="" />
         <activity android:name=".Games.Drive.ManualDriveActivity" />
+        <activity android:name=".Games.Drive.JoystickDriveActivity" />
+        <activity android:name=".Games.GameListActivity" />
         <activity android:name=".Games.ChatActivity" />
         <activity android:name=".Games.MathActivity" />
+        <activity android:name=".Games.TypeSpeakActivity"/>
         <activity android:name=".Games.ChargeActivity" />
         <activity android:name=".Games.Drive.VoiceDriveActivity" />
 
